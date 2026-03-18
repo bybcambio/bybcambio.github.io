@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByB - Mi Red de Contactos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{height:100%;-webkit-text-size-adjust:100%}
+body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-height:100vh;-webkit-overflow-scrolling:touch}
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.login-box{max-width:380px;width:100%;text-align:center}
+.login-icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#c9956b,#a07040);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#14120f;margin:0 auto 16px}
+.login-box h1{font-size:20px;color:#e8e2d8;margin-bottom:4px}
+.login-box p{color:#7a7468;font-size:12px;margin-bottom:24px}
+.login-btns{display:flex;flex-direction:column;gap:8px}
+.login-btn{padding:14px;border-radius:10px;border:1px solid #2a2722;background:#1a1816;color:#e8e2d8;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;touch-action:manipulation}
+.login-btn:hover,.login-btn:active{border-color:#c9956b;background:#2d2820;color:#c9956b}
+.header{background:linear-gradient(180deg,#1a1816,#0f0d0a);border-bottom:1px solid #2a2722;padding:14px 20px}
+.header-inner{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:8px}
+.brand-icon{width:24px;height:24px;border-radius:5px;background:linear-gradient(135deg,#c9956b,#a07040);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#14120f}
+.brand h1{font-size:14px;color:#e8e2d8}
+.logout{background:none;border:1px solid #2a2722;border-radius:6px;color:#7a7468;font-size:11px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.pcard{background:linear-gradient(135deg,#1e1c19,#1a1816);border:1px solid #2a2722;border-radius:10px;padding:14px 18px;margin:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.pname{font-size:16px;font-weight:700;color:#c9956b}
+.pstats{display:flex;gap:14px}
+.ps{text-align:center}
+.ps .v{font-size:18px;font-weight:700;color:#e8e2d8}
+.ps .l{font-size:8px;color:#7a7468;text-transform:uppercase;letter-spacing:0.06em}
+.ps.a .v{color:#f87171}
+.ps.g .v{color:#c9956b}
+.section{padding:8px 16px}
+.section h2{font-size:11px;color:#c9956b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.board{display:flex;gap:10px;padding:0 16px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.column{flex:0 0 220px;background:#14120f;border:1px solid #2a2722;border-radius:10px;display:flex;flex-direction:column}
+.col-h{padding:10px;border-bottom:1px solid #2a2722;display:flex;justify-content:space-between;align-items:center}
+.col-t{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em}
+.col-c{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.col-cards{padding:6px;display:flex;flex-direction:column;gap:6px}
+.col-empty{padding:16px 10px;text-align:center;color:#3a3630;font-size:10px;font-style:italic}
+.card{background:#1a1816;border:1px solid #2a2722;border-radius:8px;padding:10px;cursor:pointer;transition:all 0.2s}
+.card:hover{border-color:#c9956b}
+.card-top{display:flex;justify-content:space-between;margin-bottom:3px}
+.card-name{font-size:12px;font-weight:700;color:#e8e2d8}
+.card-sub{font-size:9px;color:#7a7468}
+.card-emp{font-size:10px;color:#7a7468;margin-bottom:4px}
+.card-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #2a2722;padding-top:4px;margin-top:4px}
+.card-days{font-size:9px;color:#7a7468}
+.card-days.over{color:#f87171;font-weight:600}
+.card-warn{font-size:8px;color:#f87171;margin-bottom:3px}
+.etiq{display:inline-block;padding:2px 6px;border-radius:3px;font-size:8px;font-weight:600;margin-right:2px}
+.et-v{background:rgba(74,222,128,0.15);color:#4ade80}
+.et-a{background:rgba(251,191,36,0.15);color:#fbbf24}
+.et-r{background:rgba(248,113,113,0.15);color:#f87171}
+
+.remind{background:#1a1816;border:1px solid #2a2722;border-radius:8px;padding:10px 12px;margin-bottom:6px}
+.remind-date{font-size:10px;color:#c9956b;font-weight:700}
+.remind-text{font-size:11px;color:#b0a89a;margin-top:2px}
+
+.overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:100;justify-content:center;align-items:center;padding:16px}
+.overlay.active{display:flex}
+.modal{background:#1a1816;border:1px solid #2a2722;border-radius:12px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;padding:18px}
+.modal-close{float:right;background:none;border:none;color:#7a7468;font-size:16px;cursor:pointer}
+.modal h2{font-size:15px;color:#c9956b;margin-bottom:3px}
+.modal h3{font-size:10px;color:#c9956b;text-transform:uppercase;letter-spacing:0.06em;margin:12px 0 6px;border-bottom:1px solid #2a2722;padding-bottom:3px}
+.modal p{font-size:10px;color:#b0a89a;line-height:1.5;margin-bottom:3px}
+.dr{display:flex;gap:6px;margin-bottom:2px}
+.dl{color:#7a7468;font-size:9px;width:100px;flex-shrink:0}
+.dv{color:#e8e2d8;font-size:9px}
+.seq{background:#14120f;border:1px solid #2a2722;border-radius:6px;padding:8px;margin:4px 0}
+.seq-d{font-size:9px;color:#c9956b;font-weight:700;margin-bottom:2px}
+.seq-m{font-size:10px;color:#b0a89a;font-style:italic;line-height:1.4}
+
+.col-conocido .col-t{color:#7a7468}.col-conocido .col-c{background:rgba(122,116,104,0.2);color:#7a7468}
+.col-desarrollo .col-t{color:#fbbf24}.col-desarrollo .col-c{background:rgba(251,191,36,0.15);color:#fbbf24}
+.col-confianza .col-t{color:#60a5fa}.col-confianza .col-c{background:rgba(96,165,250,0.15);color:#60a5fa}
+.col-aliado .col-t{color:#4ade80}.col-aliado .col-c{background:rgba(74,222,128,0.15);color:#4ade80}
+.col-socio .col-t{color:#c9956b}.col-socio .col-c{background:rgba(201,149,107,0.15);color:#c9956b}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div id="loginScreen" class="login"><div class="login-box">
+<div class="login-icon">RP</div>
+<h1>Mi Red de Contactos</h1>
+<p>ByB Casa de Cambio — Selecciona tu nombre</p>
+<div class="login-btns" id="loginBtns"></div>
+</div></div>
+
+<div id="app" class="hidden">
+<div class="header"><div class="header-inner">
+<div class="brand"><div class="brand-icon">RP</div><h1>Mi Red</h1></div>
+<button class="logout" onclick="logout()">Cambiar promotor</button>
+</div></div>
+<div class="pcard" id="pCard"></div>
+
+<div class="section"><h2>Proximas acciones</h2><div id="reminders"></div></div>
+<div class="section"><h2>Mis contactos por etapa</h2></div>
+<div class="board" id="board"></div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeM()"><div class="modal" id="modal"></div></div>
+
+<script>
+var C=[
+{id:'C001',name:'RICARDO VALENCIA MONTOYA',apodo:'Ricky',empresa:'Valencia Importaciones',cargo:'Dir. General',etapa:'En desarrollo',dias:3,venc:false,prom:'Carlos Ramirez',cumple:'14 ago',pp:'Comparativa ByB vs Banorte (18 mar)',senales:['Insatisfecho con su banco','Compartio datos de operaciones'],seq:[{d:'18 mar',m:'Enviar comparativa tipo cambio (PROMETIDO)'},{d:'21 mar',m:'Seguimiento + preguntar por Valentina'},{d:'4 abr',m:'Invitar a evento grupal'},{d:'18 abr',m:'Recomendacion viaje Barcelona'},{d:'2 may',m:'Check-in: como van importaciones?'}]},
+{id:'C002',name:'PABLO GARZA MENDEZ',apodo:'Pablito',empresa:'AutoParts MX',cargo:'Dir. General',etapa:'Conocido nuevo',dias:1,venc:false,prom:'Carlos Ramirez',cumple:'22 jun',pp:'Cotizacion tipo cambio (24 mar)',senales:['Su banco le cobra mucha comision'],seq:[{d:'19 mar',m:'Agradecimiento + pregunta golf'},{d:'24 mar',m:'Enviar cotizacion (PROMETIDO)'},{d:'7 abr',m:'Articulo sector autopartes'},{d:'21 abr',m:'Invitar a evento grupal'},{d:'5 may',m:'Check-in casual'}]},
+{id:'C003',name:'HECTOR ORTIZ LUNA',apodo:'Hector',empresa:'Grupo Ortiz Holdings',cargo:'Socio Director',etapa:'Confianza',dias:12,venc:false,prom:'Dimitri Haik',cumple:'3 oct',pp:null,senales:['Habla de operaciones intl sin pedir solucion aun'],seq:[{d:'19 mar',m:'Agradecer por presentaciones'},{d:'28 mar',m:'Detalle personal (botella de vino)'},{d:'10 abr',m:'Invitar a cena de parejas'},{d:'25 abr',m:'Compartir articulo inversiones'},{d:'8 may',m:'Cafe 1:1 para platicar'}]},
+{id:'C004',name:'MARIA FERNANDA RIOS',apodo:'Mafer',empresa:'Textiles Rios SA',cargo:'CEO',etapa:'Aliado',dias:5,venc:false,prom:'Dimitri Haik',cumple:'15 abr',pp:null,senales:['Ya opera con ByB, muy satisfecha'],seq:[{d:'20 mar',m:'Invitar como co-anfitriona cena'},{d:'1 abr',m:'Pedirle referido empresarios'},{d:'15 abr',m:'CUMPLE! Detalle personal'},{d:'28 abr',m:'Agradecer referido'},{d:'10 may',m:'Check-in personal'}]},
+{id:'C005',name:'JORGE LUIS SALAZAR',apodo:'El Gordo',empresa:'Salazar Logistics',cargo:'Socio Fundador',etapa:'Socio',dias:7,venc:false,prom:'Dimitri Haik',cumple:'8 dic',pp:null,senales:['Cliente activo, 5+ operaciones mensuales'],seq:[{d:'20 mar',m:'Invitar como co-anfitrion cazita'},{d:'1 abr',m:'Pedir referidos'},{d:'15 abr',m:'Detalle personal (mezcal)'},{d:'28 abr',m:'Presentar contacto nuevo'},{d:'10 may',m:'Revisar condiciones servicio'}]},
+{id:'C006',name:'ANDREA VILLALOBOS',apodo:'Andy',empresa:'Villalobos Import.',cargo:'Dir. Comercial',etapa:'En desarrollo',dias:35,venc:false,prom:'Carlos Ramirez',cumple:'29 jul',pp:'Info tipo cambio farmaceuticos (2 abr)',senales:['Menciono costos de importacion altos'],seq:[{d:'19 mar',m:'Articulo regulacion farmaceutica'},{d:'2 abr',m:'Enviar comparativa (PROMETIDO)'},{d:'16 abr',m:'Invitar a cafe 1:1'},{d:'30 abr',m:'Info adicional sin presion'},{d:'14 may',m:'Check-in importaciones'}]},
+{id:'C007',name:'FERNANDO IBARRA',apodo:'Fer',empresa:'Ibarra & Asociados',cargo:'Socio',etapa:'Confianza',dias:18,venc:false,prom:'Dimitri Haik',cumple:'18 sep',pp:null,senales:['Muy conectado, buena fuente de referidos'],seq:[{d:'22 mar',m:'Invitar a padel'},{d:'5 abr',m:'Presentar a Ricky'},{d:'19 abr',m:'Convivio + platica contactos'},{d:'3 may',m:'Pedir referido importadores'},{d:'17 may',m:'Invitar a evento exclusivo'}]},
+{id:'C008',name:'LAURA MARTINEZ CASTRO',apodo:'Lau',empresa:'LMC Trading',cargo:'CEO',etapa:'Conocido nuevo',dias:45,venc:false,prom:'Carlos Ramirez',cumple:'Desconocido',pp:null,senales:['Poco contexto, necesita mas interaccion'],seq:[{d:'20 mar',m:'Follow-up post-evento'},{d:'10 abr',m:'Articulo commodities'},{d:'30 abr',m:'Invitar a evento grande'},{d:'20 may',m:'Si asiste, profundizar relacion'},{d:'10 jun',m:'Evaluar si mantener contacto activo'}]}
+];
+
+var ET=[{k:'Conocido nuevo',c:'col-conocido',l:'CONOCIDO NUEVO'},{k:'En desarrollo',c:'col-desarrollo',l:'EN DESARROLLO'},{k:'Confianza',c:'col-confianza',l:'CONFIANZA'},{k:'Aliado',c:'col-aliado',l:'ALIADO'},{k:'Socio',c:'col-socio',l:'SOCIO'}];
+var proms=[...new Set(C.map(c=>c.prom))];
+var user=null;
+
+document.getElementById('loginBtns').innerHTML=proms.map(p=>'<button class="login-btn" onclick="login(\''+p+'\')">'+p+'</button>').join('');
+
+function login(name){user=name;document.getElementById('loginScreen').classList.add('hidden');document.getElementById('app').classList.remove('hidden');render()}
+function logout(){user=null;document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('app').classList.add('hidden')}
+
+function render(){
+var fc=C.filter(c=>c.prom===user);
+var pp=fc.filter(c=>c.pp).length;
+document.getElementById('pCard').innerHTML='<div><div class="pname">'+user+'</div><div style="color:#7a7468;font-size:10px">'+fc.length+' contactos en tu red</div></div><div class="pstats"><div class="ps"><div class="v">'+fc.length+'</div><div class="l">Contactos</div></div><div class="ps '+(pp>0?'a':'')+'"><div class="v">'+pp+'</div><div class="l">Pendientes</div></div></div>';
+
+// Reminders - next actions from sequences
+var remEl=document.getElementById('reminders');
+var allNext=[];
+fc.forEach(c=>{if(c.pp)allNext.push({date:'URGENTE',text:c.apodo+': '+c.pp,urgent:true});if(c.seq&&c.seq.length>0)allNext.push({date:c.seq[0].d,text:c.apodo+': '+c.seq[0].m,urgent:false})});
+allNext.sort((a,b)=>a.urgent?-1:b.urgent?1:0);
+remEl.innerHTML=allNext.slice(0,5).map(r=>'<div class="remind"><div class="remind-date">'+(r.urgent?'&#9888; ':'')+r.date+'</div><div class="remind-text">'+r.text+'</div></div>').join('');
+
+// Board
+var bo=document.getElementById('board');bo.innerHTML='';
+ET.forEach(et=>{
+var cards=fc.filter(c=>c.etapa===et.k);
+var col=document.createElement('div');col.className='column '+et.c;
+col.innerHTML='<div class="col-h"><span class="col-t">'+et.l+'</span><span class="col-c">'+cards.length+'</span></div><div class="col-cards">'+(cards.length===0?'<div class="col-empty">Sin contactos</div>':cards.map(c=>'<div class="card" onclick="showC(\''+c.id+'\')"><div class="card-top"><div><div class="card-name">'+c.apodo+'</div><div class="card-sub">'+c.name+'</div></div></div><div class="card-emp">'+c.empresa+' &middot; '+c.cargo+'</div>'+c.senales.map(s=>'<span class="etiq '+(s.includes('activo')||s.includes('satisfech')||s.includes('Insatisf')||s.includes('cobra')?'et-v':s.includes('Poco')?'et-r':'et-a')+'">'+s.substring(0,35)+'</span>').join('')+(c.pp?'<div class="card-warn">&#9888; '+c.pp+'</div>':'')+'<div class="card-foot"><span class="card-days '+(c.venc?'over':'')+'">Hace '+c.dias+'d</span><span>'+(c.cumple&&c.cumple!=='Desconocido'?'&#127874; '+c.cumple:'')+'</span></div></div>').join(''))+'</div>';
+bo.appendChild(col)});
+}
+
+function showC(id){
+var c=C.find(x=>x.id===id);if(!c)return;
+document.getElementById('modal').innerHTML='<button class="modal-close" onclick="closeM()">&#10005;</button><h2>'+c.apodo+'</h2><p style="color:#7a7468">'+c.name+'<br>'+c.empresa+' &middot; '+c.cargo+'</p><h3>Datos</h3><div class="dr"><span class="dl">Etapa:</span><span class="dv">'+c.etapa+'</span></div><div class="dr"><span class="dl">Cumpleanos:</span><span class="dv">'+c.cumple+'</span></div><div class="dr"><span class="dl">Ultimo contacto:</span><span class="dv">Hace '+c.dias+' dias</span></div>'+(c.pp?'<div class="dr"><span class="dl" style="color:#f87171">Pendiente:</span><span class="dv" style="color:#f87171">'+c.pp+'</span></div>':'')+'<h3>Senales</h3>'+c.senales.map(s=>'<p>'+s+'</p>').join('')+'<h3>Proximos 5 pasos</h3>'+c.seq.map((s,i)=>'<div class="seq"><div class="seq-d">Paso '+(i+1)+' - '+s.d+'</div><div class="seq-m">'+s.m+'</div></div>').join('');
+document.getElementById('overlay').classList.add('active')}
+function closeM(){document.getElementById('overlay').classList.remove('active')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+</script>
+</body></html>
