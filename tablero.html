@@ -15,25 +15,28 @@ body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-heigh
 .login-box h1{font-size:20px;color:#e8e2d8;margin-bottom:4px}
 .login-box p{color:#7a7468;font-size:12px;margin-bottom:24px}
 .login-btns{display:flex;flex-direction:column;gap:8px}
-.login-btn{padding:14px;border-radius:10px;border:1px solid #2a2722;background:#1a1816;color:#e8e2d8;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;touch-action:manipulation}
-.login-btn:hover,.login-btn:active{border-color:#c9956b;background:#2d2820;color:#c9956b}
+.login-btn{padding:14px;border-radius:10px;border:1px solid #2a2722;background:#1a1816;color:#e8e2d8;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.login-btn:hover{border-color:#c9956b;background:#2d2820;color:#c9956b}
 .header{background:linear-gradient(180deg,#1a1816,#0f0d0a);border-bottom:1px solid #2a2722;padding:14px 20px}
 .header-inner{display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;align-items:center;gap:8px}
 .brand-icon{width:24px;height:24px;border-radius:5px;background:linear-gradient(135deg,#c9956b,#a07040);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#14120f}
 .brand h1{font-size:14px;color:#e8e2d8}
 .logout{background:none;border:1px solid #2a2722;border-radius:6px;color:#7a7468;font-size:11px;padding:6px 12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.tabs{display:flex;gap:0;margin:0 16px;border-bottom:1px solid #2a2722}
+.tab{padding:10px 20px;font-size:12px;font-weight:600;color:#7a7468;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:#c9956b;border-bottom-color:#c9956b}
+.tab:hover{color:#b0a89a}
 .toolbar{padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .search-box{flex:1;min-width:180px;padding:8px 12px;background:#1a1816;border:1px solid #2a2722;border-radius:8px;color:#e8e2d8;font-size:12px;font-family:'DM Sans',sans-serif;outline:none}
 .search-box:focus{border-color:#c9956b}
 .search-box::placeholder{color:#5a5449}
 .filter-btn{padding:6px 12px;border-radius:6px;border:1px solid #2a2722;background:#1a1816;color:#7a7468;font-size:10px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
 .filter-btn.active{border-color:#c9956b;background:#2d2820;color:#c9956b}
-.filter-btn:hover{border-color:#c9956b}
 .pcard{background:linear-gradient(135deg,#1e1c19,#1a1816);border:1px solid #2a2722;border-radius:10px;padding:14px 18px;margin:0 16px 8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .pname{font-size:16px;font-weight:700;color:#c9956b}
 .pstats{display:flex;gap:12px;flex-wrap:wrap}
-.ps{text-align:center}.ps .v{font-size:16px;font-weight:700;color:#e8e2d8}.ps .l{font-size:7px;color:#7a7468;text-transform:uppercase;letter-spacing:.06em}.ps.a .v{color:#f87171}.ps.ok .v{color:#4ade80}.ps.g .v{color:#c9956b}
+.ps{text-align:center}.ps .v{font-size:16px;font-weight:700;color:#e8e2d8}.ps .l{font-size:7px;color:#7a7468;text-transform:uppercase;letter-spacing:.06em}.ps.a .v{color:#f87171}.ps.ok .v{color:#4ade80}
 .progress-bar{margin:0 16px 8px;background:#14120f;border:1px solid #2a2722;border-radius:8px;padding:10px 14px}
 .progress-bar h3{font-size:9px;color:#c9956b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .progress-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
@@ -45,8 +48,7 @@ body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-heigh
 .cal-day.today{border-color:#c9956b}
 .cal-day-title{font-size:9px;font-weight:700;color:#7a7468;text-transform:uppercase;margin-bottom:4px}
 .cal-day.today .cal-day-title{color:#c9956b}
-.cal-item{font-size:9px;color:#b0a89a;padding:3px 0;border-bottom:1px solid #1e1c19;line-height:1.3}
-.cal-item:last-child{border:none}.cal-item b{color:#e8e2d8;font-weight:600}
+.cal-item{font-size:9px;color:#b0a89a;padding:3px 0;border-bottom:1px solid #1e1c19;line-height:1.3}.cal-item:last-child{border:none}.cal-item b{color:#e8e2d8;font-weight:600}
 .cal-empty{font-size:9px;color:#3a3630;font-style:italic;padding:4px 0}
 .section{padding:4px 16px 0}.section h2{font-size:10px;color:#c9956b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .board{display:flex;gap:8px;padding:0 16px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -65,30 +67,64 @@ body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-heigh
 .etiq{display:inline-block;padding:1px 5px;border-radius:3px;font-size:7px;font-weight:600;margin-right:2px;margin-bottom:2px}
 .et-v{background:rgba(74,222,128,.15);color:#4ade80}.et-a{background:rgba(251,191,36,.15);color:#fbbf24}.et-r{background:rgba(248,113,113,.15);color:#f87171}.et-c{background:rgba(96,165,250,.15);color:#60a5fa}
 .wa-btn{display:inline-flex;align-items:center;gap:3px;padding:4px 8px;border-radius:5px;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.3);color:#25d366;font-size:8px;font-weight:600;cursor:pointer;text-decoration:none;margin-top:3px}
-.wa-btn:hover{background:rgba(37,211,102,.25)}
 .remind{background:#1a1816;border:1px solid #2a2722;border-radius:8px;padding:8px 10px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .remind-left{flex:1}.remind-date{font-size:9px;color:#c9956b;font-weight:700}.remind-text{font-size:10px;color:#b0a89a;margin-top:1px}
 .done-btn{padding:4px 10px;border-radius:5px;border:1px solid #3a3630;background:#1a1816;color:#7a7468;font-size:9px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
 .done-btn:hover{border-color:#4ade80;color:#4ade80}.done-btn.completed{border-color:#4ade80;background:rgba(74,222,128,.15);color:#4ade80}
+/* PROFILE DIRECTORY STYLES */
+.profiles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;padding:0 16px 16px}
+.profile-card{background:#1a1816;border:1px solid #2a2722;border-radius:10px;padding:14px;cursor:pointer;transition:all .2s}
+.profile-card:hover{border-color:#c9956b}
+.profile-top{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px}
+.profile-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#c9956b,#a07040);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#14120f;flex-shrink:0}
+.profile-info{flex:1}
+.profile-name{font-size:13px;font-weight:700;color:#e8e2d8}
+.profile-role{font-size:10px;color:#7a7468;margin-top:1px}
+.profile-stage{font-size:8px;padding:2px 8px;border-radius:4px;font-weight:600;display:inline-block;margin-top:4px}
+.st-conocido{background:rgba(122,116,104,.2);color:#7a7468}
+.st-desarrollo{background:rgba(251,191,36,.15);color:#fbbf24}
+.st-confianza{background:rgba(96,165,250,.15);color:#60a5fa}
+.st-aliado{background:rgba(74,222,128,.15);color:#4ade80}
+.st-socio{background:rgba(201,149,107,.15);color:#c9956b}
+.score-wrap{margin:8px 0}
+.score-track{height:6px;background:#2a2722;border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;transition:width .3s}
+.score-label{display:flex;justify-content:space-between;margin-top:3px}
+.score-label span{font-size:8px;color:#7a7468}
+.score-label b{font-size:10px}
+.profile-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.meta-tag{font-size:8px;padding:2px 6px;border-radius:3px;background:#14120f;border:1px solid #2a2722;color:#b0a89a}
+.social-links{display:flex;gap:6px;margin-top:8px}
+.social-link{padding:3px 8px;border-radius:4px;font-size:8px;font-weight:600;text-decoration:none;border:1px solid #2a2722;color:#7a7468;transition:all .2s}
+.social-link:hover{border-color:#c9956b;color:#c9956b}
+.social-link.ig{color:#e1306c;border-color:rgba(225,48,108,.3)}.social-link.li{color:#0077b5;border-color:rgba(0,119,181,.3)}.social-link.fb{color:#1877f2;border-color:rgba(24,119,242,.3)}.social-link.tw{color:#1da1f2;border-color:rgba(29,161,242,.3)}
+/* MODAL STYLES */
 .overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:100;justify-content:center;align-items:center;padding:16px}
 .overlay.active{display:flex}
-.modal{background:#1a1816;border:1px solid #2a2722;border-radius:12px;max-width:440px;width:100%;max-height:85vh;overflow-y:auto;padding:18px}
+.modal{background:#1a1816;border:1px solid #2a2722;border-radius:12px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;padding:18px}
 .modal-close{float:right;background:none;border:none;color:#7a7468;font-size:16px;cursor:pointer}
 .modal h2{font-size:15px;color:#c9956b;margin-bottom:3px}
 .modal h3{font-size:10px;color:#c9956b;text-transform:uppercase;letter-spacing:.06em;margin:12px 0 6px;border-bottom:1px solid #2a2722;padding-bottom:3px}
 .modal p{font-size:10px;color:#b0a89a;line-height:1.5;margin-bottom:3px}
-.dr{display:flex;gap:6px;margin-bottom:2px}.dl{color:#7a7468;font-size:9px;width:100px;flex-shrink:0}.dv{color:#e8e2d8;font-size:9px}
+.dr{display:flex;gap:6px;margin-bottom:2px}.dl{color:#7a7468;font-size:9px;width:110px;flex-shrink:0}.dv{color:#e8e2d8;font-size:9px}
 .seq{background:#14120f;border:1px solid #2a2722;border-radius:6px;padding:8px;margin:4px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
 .seq-left{flex:1}.seq-d{font-size:9px;color:#c9956b;font-weight:700;margin-bottom:2px}.seq-m{font-size:10px;color:#b0a89a;font-style:italic;line-height:1.4}
 .tip-box{background:#2d2820;border:1px solid #3a3630;border-radius:6px;padding:8px;margin:4px 0}
 .tip-title{font-size:9px;color:#c9956b;font-weight:700;margin-bottom:3px}.tip-text{font-size:10px;color:#b0a89a;line-height:1.4}
+.timeline{margin:4px 0}.tl-item{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #2a2722}.tl-item:last-child{border:none}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:#c9956b;flex-shrink:0;margin-top:3px}
+.tl-date{font-size:9px;color:#c9956b;font-weight:600}.tl-desc{font-size:10px;color:#b0a89a;margin-top:1px}
+.conn-item{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:10px}
+.conn-arrow{color:#c9956b}
+.family-row{display:flex;gap:4px;margin:3px 0;align-items:center;font-size:10px;color:#b0a89a}
+.family-icon{font-size:12px}
 .col-conocido .col-t{color:#7a7468}.col-conocido .col-c{background:rgba(122,116,104,.2);color:#7a7468}
 .col-desarrollo .col-t{color:#fbbf24}.col-desarrollo .col-c{background:rgba(251,191,36,.15);color:#fbbf24}
 .col-confianza .col-t{color:#60a5fa}.col-confianza .col-c{background:rgba(96,165,250,.15);color:#60a5fa}
 .col-aliado .col-t{color:#4ade80}.col-aliado .col-c{background:rgba(74,222,128,.15);color:#4ade80}
 .col-socio .col-t{color:#c9956b}.col-socio .col-c{background:rgba(201,149,107,.15);color:#c9956b}
 .hidden{display:none}
-@media(max-width:600px){.pstats{gap:8px}.ps .v{font-size:14px}.cal-day{flex:0 0 110px}}
+@media(max-width:600px){.pstats{gap:8px}.ps .v{font-size:14px}.cal-day{flex:0 0 110px}.profiles-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -98,12 +134,20 @@ body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-heigh
 <p>ByB Casa de Cambio — Selecciona tu nombre</p>
 <div class="login-btns" id="loginBtns"></div>
 </div></div>
+
 <div id="app" class="hidden">
 <div class="header"><div class="header-inner">
 <div class="brand"><div class="brand-icon">RP</div><h1>Mi Red</h1></div>
 <button class="logout" onclick="logout()">Cambiar</button>
 </div></div>
 <div class="pcard" id="pCard"></div>
+
+<div class="tabs">
+<div class="tab active" data-tab="tablero" onclick="switchTab('tablero')">Tablero</div>
+<div class="tab" data-tab="perfiles" onclick="switchTab('perfiles')">Perfiles</div>
+</div>
+
+<div id="tableroView">
 <div class="progress-bar" id="progressBar"></div>
 <div class="toolbar">
 <input class="search-box" id="searchBox" placeholder="Buscar contacto..." oninput="render()">
@@ -119,113 +163,214 @@ body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-heigh
 <div class="section"><h2>Mis contactos por etapa</h2></div>
 <div class="board" id="board"></div>
 </div>
-<div class="overlay" id="overlay" onclick="if(event.target===this)closeM()"><div class="modal" id="modal"></div></div>
 
+<div id="perfilesView" class="hidden">
+<div class="toolbar">
+<input class="search-box" id="profileSearch" placeholder="Buscar por nombre, empresa o industria..." oninput="renderProfiles()">
+</div>
+<div class="profiles-grid" id="profilesGrid"></div>
+</div>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeM()"><div class="modal" id="modal"></div></div>
 <script>
 var C=[
-{id:'C001',name:'ROBERTO MENDOZA FUENTES',apodo:'Bobby',empresa:'Mendoza Capital Group',cargo:'Socio Director',etapa:'Socio',dias:4,venc:false,prom:'Dimitri Haik',cumple:'22 may',esCliente:true,pp:null,senales:['Cliente activo, 8+ ops mensuales','Refiere clientes constantemente'],comoTratarlo:'Extrovertido y generoso. Le encanta sentirse el anfitrion. Pidele que co-organice eventos contigo. Mezcal de Oaxaca es su debilidad. Nunca lo hagas esperar.',regalo:null,guionLlamada:null,frio:false,tel:'5541239876',seq:[{d:'20 mar',m:'Invitar como co-anfitrion cena ejecutiva',done:false},{d:'3 abr',m:'Pedir 2 referidos de su red de inversionistas',done:false},{d:'17 abr',m:'Mezcal artesanal + nota de agradecimiento',done:false},{d:'1 may',m:'Revisar condiciones preferenciales por volumen',done:false},{d:'22 may',m:'CUMPLE! Experiencia personalizada (cata de mezcal)',done:false}]},
+{id:'C001',name:'ROBERTO MENDOZA FUENTES',apodo:'Bobby',empresa:'Mendoza Capital Group',cargo:'Socio Director',industria:'Inversiones',zona:'Polanco',etapa:'Socio',score:92,dias:4,venc:false,prom:'Dimitri Haik',cumple:'22 may',esCliente:true,pp:null,
+senales:['Cliente activo, 8+ ops mensuales','Refiere clientes constantemente'],
+comoTratarlo:'Extrovertido y generoso. Le encanta sentirse el anfitrion. Pidele que co-organice eventos. Mezcal de Oaxaca es su debilidad. Nunca lo hagas esperar.',
+regalo:null,guionLlamada:null,frio:false,tel:'5541239876',
+instagram:'@bobby.mendoza',linkedin:'linkedin.com/in/robertomendoza',facebook:'Roberto Mendoza',twitter:null,
+pareja:'Carolina Estrada',cumplePareja:'8 mar',hijos:'Emiliano (12), Renata (9)',
+bancoActual:'Intercam (antes)',volumen:'$200K+ USD/mes',
+historial:[{fecha:'15 mar',tipo:'Cazita',desc:'Co-anfitrion en evento, presento a 3 personas'},{fecha:'5 mar',tipo:'Operacion',desc:'Op de $180K USD, tipo preferencial'},{fecha:'20 feb',tipo:'Comida',desc:'Comida en Pujol, hablamos de expansion'}],
+conexiones:[{nombre:'Sofi',razon:'Ambos exportan, misma zona'},
+{nombre:'Alex',razon:'Bobby invierte en farma, Alex importa farma'}],
+seq:[{d:'20 mar',m:'Invitar como co-anfitrion cena ejecutiva',done:false},{d:'3 abr',m:'Pedir 2 referidos de inversionistas',done:false},{d:'17 abr',m:'Mezcal artesanal + nota',done:false},{d:'1 may',m:'Revisar condiciones preferenciales',done:false},{d:'22 may',m:'CUMPLE! Cata de mezcal privada',done:false}]},
 
-{id:'C002',name:'SOFIA CASTELLANOS VEGA',apodo:'Sofi',empresa:'SC Textiles Internacional',cargo:'CEO',etapa:'Aliado',dias:6,venc:false,prom:'Dimitri Haik',cumple:'8 jul',esCliente:true,pp:null,senales:['Opera con ByB 2x/mes, satisfecha','Presento a 3 contactos este trimestre'],comoTratarlo:'Detallista y leal. Siempre preguntale por sus hijos antes de hablar de negocio. Es vegetariana — cuidado con restaurantes. Valora mucho que recuerdes las cosas pequenas.',regalo:'Libro de cocina vegetariana gourmet de Enrique Olvera para su cumple (8 jul)',guionLlamada:null,frio:false,tel:'5598761234',seq:[{d:'21 mar',m:'Agradecer referido de la semana pasada',done:false},{d:'4 abr',m:'Invitarla como co-anfitriona cena de mujeres empresarias',done:false},{d:'18 abr',m:'Compartir articulo comercio textil LATAM',done:false},{d:'2 may',m:'Pedir intro a su contacto en camara de comercio',done:false},{d:'16 may',m:'Check-in personal + tipo de cambio',done:false}]},
+{id:'C002',name:'SOFIA CASTELLANOS VEGA',apodo:'Sofi',empresa:'SC Textiles Internacional',cargo:'CEO',industria:'Textil / Exportacion',zona:'Santa Fe',etapa:'Aliado',score:84,dias:6,venc:false,prom:'Dimitri Haik',cumple:'8 jul',esCliente:true,pp:null,
+senales:['Opera con ByB 2x/mes, satisfecha','Presento a 3 contactos este trimestre'],
+comoTratarlo:'Detallista y leal. Siempre preguntale por sus hijos antes de hablar de negocio. Es vegetariana. Valora que recuerdes las cosas pequenas.',
+regalo:'Libro de cocina vegetariana gourmet de Enrique Olvera para su cumple (8 jul)',guionLlamada:null,frio:false,tel:'5598761234',
+instagram:'@sofi.castellanos',linkedin:'linkedin.com/in/sofiacastellanos',facebook:null,twitter:null,
+pareja:'Andres Dominguez',cumplePareja:'14 oct',hijos:'Isabella (7), Mateo (4)',
+bancoActual:'ByB (cliente activa)',volumen:'$50K-$100K USD/mes',
+historial:[{fecha:'14 mar',tipo:'WhatsApp',desc:'Mando referido de su amiga importadora'},{fecha:'3 mar',tipo:'Operacion',desc:'Op de $65K USD exportacion textil'},{fecha:'18 feb',tipo:'Cena',desc:'Cena de parejas, presento a Andres'}],
+conexiones:[{nombre:'Bobby',razon:'Ambos exportan, zona Poniente'},{nombre:'Paty',razon:'Sofi textil + Paty logistica = complementarias'}],
+seq:[{d:'21 mar',m:'Agradecer referido de la semana pasada',done:false},{d:'4 abr',m:'Invitarla como co-anfitriona cena mujeres empresarias',done:false},{d:'18 abr',m:'Articulo comercio textil LATAM',done:false},{d:'2 may',m:'Pedir intro a camara de comercio',done:false},{d:'16 may',m:'Check-in personal + tipo cambio',done:false}]},
 
-{id:'C003',name:'ALEJANDRO DURAN RIOS',apodo:'Alex',empresa:'Duran Pharma Supply',cargo:'Director de Operaciones',etapa:'Confianza',dias:10,venc:false,prom:'Carlos Ramirez',cumple:'15 nov',esCliente:false,pp:'Enviar comparativa ByB vs BBVA (21 mar)',senales:['Insatisfecho con BBVA, tarda 2 dias en liquidar','Opera $80K-$120K USD/mes en importaciones de India'],comoTratarlo:'Analitico y meticuloso. No le gustan los rodeos pero SI necesita ver datos duros. Mandale todo por email con numeros claros. Le gusta el whisky japones y juega tenis los sabados.',regalo:'Botella de Hibiki Harmony con nota personal',guionLlamada:null,frio:false,tel:'5512348765',seq:[{d:'21 mar',m:'Enviar comparativa ByB vs BBVA con numeros reales (PROMETIDO)',done:false},{d:'28 mar',m:'Seguimiento: Alguna duda sobre los numeros?',done:false},{d:'10 abr',m:'Articulo regulacion farmaceutica importaciones',done:false},{d:'24 abr',m:'Invitar a tenis + whisky sabado',done:false},{d:'8 may',m:'Si no ha operado: prueba sin riesgo con op pequena',done:false}]},
+{id:'C003',name:'ALEJANDRO DURAN RIOS',apodo:'Alex',empresa:'Duran Pharma Supply',cargo:'Director de Operaciones',industria:'Farmaceutica',zona:'Lomas',etapa:'Confianza',score:68,dias:10,venc:false,prom:'Carlos Ramirez',cumple:'15 nov',esCliente:false,pp:'Enviar comparativa ByB vs BBVA (21 mar)',
+senales:['Insatisfecho con BBVA, tarda 2 dias en liquidar','Opera $80K-$120K USD/mes en importaciones de India'],
+comoTratarlo:'Analitico y meticuloso. Mandale todo por email con numeros claros. Le gusta el whisky japones y juega tenis los sabados. No le gustan las sorpresas.',
+regalo:'Botella de Hibiki Harmony con nota personal',guionLlamada:null,frio:false,tel:'5512348765',
+instagram:null,linkedin:'linkedin.com/in/alexduran',facebook:null,twitter:null,
+pareja:'Daniela Torres',cumplePareja:'2 jun',hijos:'Santiago (10)',
+bancoActual:'BBVA',volumen:'$80K-$120K USD/mes',
+historial:[{fecha:'10 mar',tipo:'Cafe',desc:'Cafe en Lomas, hablo de frustracion con BBVA'},{fecha:'25 feb',tipo:'Evento',desc:'Lo conoci en la cazita de Bobby'},{fecha:'20 feb',tipo:'WhatsApp',desc:'Le mande articulo de regulacion farma'}],
+conexiones:[{nombre:'Bobby',razon:'Bobby invierte en farma, Alex importa farma'},{nombre:'El Flaco',razon:'Ambos importan, pueden compartir experiencias aduanales'}],
+seq:[{d:'21 mar',m:'Enviar comparativa ByB vs BBVA con numeros reales (PROMETIDO)',done:false},{d:'28 mar',m:'Seguimiento: Alguna duda sobre los numeros?',done:false},{d:'10 abr',m:'Articulo regulacion farmaceutica',done:false},{d:'24 abr',m:'Invitar a tenis + whisky sabado',done:false},{d:'8 may',m:'Prueba sin riesgo con op pequena',done:false}]},
 
-{id:'C004',name:'PATRICIA NAVARRO LUNA',apodo:'Paty',empresa:'Navarro Logistics MX',cargo:'Directora General',etapa:'En desarrollo',dias:18,venc:false,prom:'Carlos Ramirez',cumple:'3 feb',esCliente:false,pp:'Mandar info tipo cambio para logistica (28 mar)',senales:['Paga proveedores en USD 3x/mes','Menciono que Banorte le cobra spread alto'],comoTratarlo:'Directa y ejecutiva. Va al grano, no pierdas su tiempo con platica larga. Reuniones cortas y con agenda. Le gusta el running y viaja mucho a Monterrey. Prefiere WhatsApp a llamadas.',regalo:null,guionLlamada:'Paty, habla [nombre]. Te mando la info de tipo de cambio que quedamos. Vi que el dolar bajo hoy, si tienes pagos proximos podria ser buen momento. Tienes 2 minutos?',frio:false,tel:'5587654321',seq:[{d:'22 mar',m:'Articulo tendencias logistica internacional',done:false},{d:'28 mar',m:'Enviar info tipo cambio logistica (PROMETIDO)',done:false},{d:'11 abr',m:'Invitar a cafe rapido 30 min (ir al grano)',done:false},{d:'25 abr',m:'Dato de mercado USD si hay movimiento favorable',done:false},{d:'9 may',m:'Invitar a evento grupal empresarias',done:false}]},
+{id:'C004',name:'PATRICIA NAVARRO LUNA',apodo:'Paty',empresa:'Navarro Logistics MX',cargo:'Directora General',industria:'Logistica internacional',zona:'Reforma',etapa:'En desarrollo',score:45,dias:18,venc:false,prom:'Carlos Ramirez',cumple:'3 feb',esCliente:false,pp:'Info tipo cambio para logistica (28 mar)',
+senales:['Paga proveedores en USD 3x/mes','Banorte le cobra spread alto'],
+comoTratarlo:'Directa y ejecutiva. Va al grano, no pierdas su tiempo. Reuniones cortas con agenda. Le gusta el running y viaja mucho a Monterrey.',
+regalo:null,guionLlamada:'Paty, habla [nombre]. Te mando la info de tipo cambio que quedamos. Vi que el dolar bajo hoy, si tienes pagos proximos podria ser buen momento. Tienes 2 minutos?',frio:false,tel:'5587654321',
+instagram:'@paty.navarro',linkedin:'linkedin.com/in/patricianavarro',facebook:null,twitter:'@patynavarro',
+pareja:null,cumplePareja:null,hijos:null,
+bancoActual:'Banorte',volumen:'$50K-$200K USD/mes',
+historial:[{fecha:'2 mar',tipo:'Evento',desc:'La conoci en evento de logistica'},{fecha:'8 mar',tipo:'WhatsApp',desc:'Seguimiento post-evento, buena respuesta'}],
+conexiones:[{nombre:'Sofi',razon:'Sofi exporta textil, Paty tiene logistica intl'},{nombre:'El Flaco',razon:'Ambos necesitan tipo cambio para importaciones'}],
+seq:[{d:'22 mar',m:'Articulo tendencias logistica internacional',done:false},{d:'28 mar',m:'Enviar info tipo cambio logistica (PROMETIDO)',done:false},{d:'11 abr',m:'Cafe rapido 30 min (ir al grano)',done:false},{d:'25 abr',m:'Dato mercado USD si hay movimiento',done:false},{d:'9 may',m:'Invitar a evento grupal empresarias',done:false}]},
 
-{id:'C005',name:'DIEGO HERRERA BLANCO',apodo:'El Flaco',empresa:'Herrera Bros Importaciones',cargo:'Socio',etapa:'Conocido nuevo',dias:2,venc:false,prom:'Carlos Ramirez',cumple:'Desconocido',esCliente:false,pp:'Cotizacion para importacion de autopartes (26 mar)',senales:['Importa autopartes de China $200K+/mes','No esta contento con su operador informal actual'],comoTratarlo:'Poco contexto aun. Parece relajado y bromista. Lo conocimos en la cazita del viernes. Le gusta el futbol (Pumas) y el domino. Ir con calma, conocerlo mejor antes de ofrecer.',regalo:null,guionLlamada:'Diego, habla [nombre]. Nos conocimos en la cazita del viernes con Bobby. Oye, me quede pensando en lo que platicaste de las autopartes. Te mando una cotizacion para que compares? Sin compromiso.',frio:false,tel:'5576543210',seq:[{d:'21 mar',m:'Agradecimiento: Estuvo buena la cazita, me cayo bien',done:false},{d:'26 mar',m:'Cotizacion importacion autopartes (PROMETIDO)',done:false},{d:'9 abr',m:'Articulo aranceles autopartes China-Mexico',done:false},{d:'23 abr',m:'Invitar a ver partido de Pumas',done:false},{d:'7 may',m:'Check-in casual: como van las importaciones?',done:false}]},
+{id:'C005',name:'DIEGO HERRERA BLANCO',apodo:'El Flaco',empresa:'Herrera Bros Importaciones',cargo:'Socio',industria:'Autopartes',zona:'Naucalpan',etapa:'Conocido nuevo',score:28,dias:2,venc:false,prom:'Carlos Ramirez',cumple:'Desconocido',esCliente:false,pp:'Cotizacion importacion autopartes (26 mar)',
+senales:['Importa autopartes de China $200K+/mes','No contento con operador informal'],
+comoTratarlo:'Poco contexto aun. Relajado y bromista. Lo conocimos en la cazita. Le gusta futbol (Pumas) y domino. Ir con calma.',
+regalo:null,guionLlamada:'Diego, habla [nombre]. Nos conocimos en la cazita con Bobby. Me quede pensando en lo de las autopartes. Te mando cotizacion para que compares? Sin compromiso.',frio:false,tel:'5576543210',
+instagram:null,linkedin:null,facebook:'Diego Herrera Blanco',twitter:null,
+pareja:null,cumplePareja:null,hijos:null,
+bancoActual:'Operador informal',volumen:'$200K+ USD/mes',
+historial:[{fecha:'18 mar',tipo:'Cazita',desc:'Lo conoci en cazita de Bobby. Hablamos de futbol y autopartes.'}],
+conexiones:[{nombre:'Alex',razon:'Ambos importan, compartir experiencias aduanales'},{nombre:'Bobby',razon:'Bobby lo presento, puede reforzar la intro'}],
+seq:[{d:'21 mar',m:'Agradecimiento: Estuvo buena la cazita',done:false},{d:'26 mar',m:'Cotizacion autopartes (PROMETIDO)',done:false},{d:'9 abr',m:'Articulo aranceles autopartes China',done:false},{d:'23 abr',m:'Invitar a ver Pumas',done:false},{d:'7 may',m:'Check-in: como van importaciones?',done:false}]},
 
-{id:'C006',name:'VALENTINA CRUZ MORENO',apodo:'Vale',empresa:'Cruz & Asociados Legal',cargo:'Socia Fundadora',etapa:'En desarrollo',dias:42,venc:true,prom:'Dimitri Haik',cumple:'19 sep',esCliente:false,pp:null,senales:['Maneja fideicomisos internacionales','Mejor como referenciadora que como cliente directa'],comoTratarlo:'Introvertida e intelectual. No le gustan eventos grandes. Prefiere cenas intimas de 4-6 personas. Lee mucho sobre filosofia y arte. Escucha mas de lo que habla. Dale espacio, no la presiones.',regalo:'Libro de ensayos de Octavio Paz edicion especial',guionLlamada:'Valentina, habla [nombre]. Oye, hace rato que no platicamos. Organizo una cena intima el proximo jueves con un grupo pequeno. Gente interesante. Me encantaria que vinieras. Te late?',frio:true,tel:'5565432109',seq:[{d:'22 mar',m:'Reactivacion: articulo sobre regulacion fideicomisos intl',done:false},{d:'5 abr',m:'Invitacion a cena intima de 4 personas',done:false},{d:'19 abr',m:'Si asistio: seguimiento personal, preguntar por arte',done:false},{d:'3 may',m:'Pedir intro a sus clientes que importan/exportan',done:false},{d:'17 may',m:'Evaluar si mantener como referenciadora activa',done:false}]}
+{id:'C006',name:'VALENTINA CRUZ MORENO',apodo:'Vale',empresa:'Cruz & Asociados Legal',cargo:'Socia Fundadora',industria:'Legal / Fideicomisos',zona:'Condesa',etapa:'En desarrollo',score:18,dias:42,venc:true,prom:'Dimitri Haik',cumple:'19 sep',esCliente:false,pp:null,
+senales:['Maneja fideicomisos internacionales','Mejor como referenciadora que cliente directa'],
+comoTratarlo:'Introvertida e intelectual. No le gustan eventos grandes. Prefiere cenas intimas de 4-6 personas. Lee mucho sobre filosofia y arte. Dale espacio.',
+regalo:'Libro de ensayos de Octavio Paz edicion especial',guionLlamada:'Valentina, habla [nombre]. Hace rato que no platicamos. Organizo una cena intima jueves con grupo pequeno. Gente interesante. Me encantaria que vinieras.',frio:true,tel:'5565432109',
+instagram:null,linkedin:'linkedin.com/in/valentinacruz',facebook:null,twitter:null,
+pareja:'Rodrigo Fuentes',cumplePareja:'5 dic',hijos:null,
+bancoActual:'N/A (referenciadora)',volumen:'N/A',
+historial:[{fecha:'5 feb',tipo:'Cena',desc:'Cena intima en su casa, hablamos de arte y fideicomisos'},{fecha:'10 ene',tipo:'Cafe',desc:'Primer cafe, me presento a 2 abogados corporativos'}],
+conexiones:[{nombre:'Alex',razon:'Vale maneja fideicomisos intl, Alex necesita estructura fiscal para importaciones'},{nombre:'Bobby',razon:'Vale puede presentar clientes de alto patrimonio a Bobby'}],
+seq:[{d:'22 mar',m:'Reactivacion: articulo regulacion fideicomisos intl',done:false},{d:'5 abr',m:'Invitacion a cena intima de 4 personas',done:false},{d:'19 abr',m:'Si asistio: seguimiento, preguntar por arte',done:false},{d:'3 may',m:'Pedir intro a clientes que importan/exportan',done:false},{d:'17 may',m:'Evaluar si mantener como referenciadora activa',done:false}]}
 ];
 var ET=[{k:'Conocido nuevo',c:'col-conocido',l:'CONOCIDO NUEVO'},{k:'En desarrollo',c:'col-desarrollo',l:'EN DESARROLLO'},{k:'Confianza',c:'col-confianza',l:'CONFIANZA'},{k:'Aliado',c:'col-aliado',l:'ALIADO'},{k:'Socio',c:'col-socio',l:'SOCIO'}];
 var DAYS=['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
 var proms=[...new Set(C.map(function(c){return c.prom}))];
-var user=null,activeFilter='all',doneActions={};
+var user=null,activeFilter='all',doneActions={},activeTab='tablero';
 
 function initLogin(){var b=document.getElementById('loginBtns');b.innerHTML=proms.map(function(p){return '<button class="login-btn" onclick="login(\''+p+'\')">'+p+'</button>'}).join('')}
-function login(n){user=n;document.getElementById('loginScreen').classList.add('hidden');document.getElementById('app').classList.remove('hidden');render()}
-function logout(){user=null;document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('app').classList.add('hidden');document.getElementById('searchBox').value='';activeFilter='all'}
+function login(n){user=n;document.getElementById('loginScreen').classList.add('hidden');document.getElementById('app').classList.remove('hidden');render();renderProfiles()}
+function logout(){user=null;document.getElementById('loginScreen').classList.remove('hidden');document.getElementById('app').classList.add('hidden');document.getElementById('searchBox').value='';activeFilter='all';switchTab('tablero')}
+
+function switchTab(t){activeTab=t;document.querySelectorAll('.tab').forEach(function(tb){tb.classList.toggle('active',tb.dataset.tab===t)});document.getElementById('tableroView').classList.toggle('hidden',t!=='tablero');document.getElementById('perfilesView').classList.toggle('hidden',t!=='perfiles');if(t==='perfiles')renderProfiles()}
+
 function setFilter(f){activeFilter=f;document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.toggle('active',b.dataset.f===f)});render()}
 function markDone(id,idx){var k=id+'_'+idx;doneActions[k]=!doneActions[k];render()}
-
-function getFiltered(){
-  var fc=C.filter(function(c){return c.prom===user});
-  var q=(document.getElementById('searchBox').value||'').toLowerCase();
-  if(q)fc=fc.filter(function(c){return(c.name+c.apodo+c.empresa).toLowerCase().indexOf(q)>=0});
-  if(activeFilter==='pending')fc=fc.filter(function(c){return c.pp});
-  if(activeFilter==='overdue')fc=fc.filter(function(c){return c.venc});
-  if(activeFilter==='client')fc=fc.filter(function(c){return c.esCliente});
-  if(activeFilter==='cold')fc=fc.filter(function(c){return c.frio});
-  return fc;
-}
+function getFiltered(){var fc=C.filter(function(c){return c.prom===user});var q=(document.getElementById('searchBox').value||'').toLowerCase();if(q)fc=fc.filter(function(c){return(c.name+c.apodo+c.empresa).toLowerCase().indexOf(q)>=0});if(activeFilter==='pending')fc=fc.filter(function(c){return c.pp});if(activeFilter==='overdue')fc=fc.filter(function(c){return c.venc});if(activeFilter==='client')fc=fc.filter(function(c){return c.esCliente});if(activeFilter==='cold')fc=fc.filter(function(c){return c.frio});return fc}
 function waLink(tel,msg){if(!tel)return '';return '<a href="https://wa.me/52'+tel+'?text='+encodeURIComponent(msg||'')+'" target="_blank" class="wa-btn">&#128172; WhatsApp</a>'}
+function scoreColor(s){return s>=80?'#c9956b':s>=60?'#4ade80':s>=40?'#fbbf24':s>=20?'#fb923c':'#f87171'}
+function stageClass(e){return e==='Conocido nuevo'?'st-conocido':e==='En desarrollo'?'st-desarrollo':e==='Confianza'?'st-confianza':e==='Aliado'?'st-aliado':'st-socio'}
+function initials(n){return n.split(' ').slice(0,2).map(function(w){return w[0]}).join('')}
 
-function render(){
-  var all=C.filter(function(c){return c.prom===user});
-  var fc=getFiltered();
-  var pp=all.filter(function(c){return c.pp}).length;
-  var frios=all.filter(function(c){return c.frio}).length;
-  var clientes=all.filter(function(c){return c.esCliente}).length;
-  var vencidos=all.filter(function(c){return c.venc}).length;
-
-  document.getElementById('pCard').innerHTML='<div><div class="pname">'+user+'</div><div style="color:#7a7468;font-size:10px">'+all.length+' contactos en tu red</div></div><div class="pstats"><div class="ps"><div class="v">'+all.length+'</div><div class="l">Contactos</div></div><div class="ps ok"><div class="v">'+clientes+'</div><div class="l">Clientes</div></div><div class="ps '+(pp>0?'a':'')+'"><div class="v">'+pp+'</div><div class="l">Pendientes</div></div><div class="ps '+(vencidos>0?'a':'')+'"><div class="v">'+vencidos+'</div><div class="l">Vencidos</div></div><div class="ps '+(frios>0?'a':'')+'"><div class="v">'+frios+'</div><div class="l">Frios</div></div></div>';
-
-  var doneCount=Object.keys(doneActions).filter(function(k){return doneActions[k]}).length;
-  var totalSeqs=all.reduce(function(a,c){return a+c.seq.length},0);
-  document.getElementById('progressBar').innerHTML='<h3>Progreso del mes</h3><div class="progress-row"><div class="progress-item"><b>'+all.length+'</b> contactos</div><div class="progress-item"><b>'+clientes+'</b> clientes activos</div><div class="progress-item"><b>'+doneCount+'</b>/'+totalSeqs+' acciones completadas</div><div class="progress-item"><b>'+pp+'</b> promesas por cumplir</div></div>';
-
-  var calEl=document.getElementById('calendarSection');
-  var today=new Date();var calHTML='<h3>Calendario de la semana</h3><div class="cal-grid">';
-  for(var d=0;d<7;d++){
-    var day=new Date(today);day.setDate(today.getDate()+d);
-    var dayStr=DAYS[day.getDay()]+' '+day.getDate()+'/'+(day.getMonth()+1);
-    var isToday=d===0;var dayActions=[];
-    all.forEach(function(c){if(c.seq){c.seq.forEach(function(s){
-      var parts=s.d.split(' ');if(parts.length>=2){
-        var dm=parseInt(parts[0]);var mm={'ene':1,'feb':2,'mar':3,'abr':4,'may':5,'jun':6,'jul':7,'ago':8,'sep':9,'oct':10,'nov':11,'dic':12}[parts[1]];
-        if(dm===day.getDate()&&mm===(day.getMonth()+1))dayActions.push({name:c.apodo,msg:s.m})
-      }})}}); 
-    var cm=cumpleMatch(all,day);if(cm)dayActions.push({name:'',msg:cm});
-    calHTML+='<div class="cal-day '+(isToday?'today':'')+'"><div class="cal-day-title">'+dayStr+'</div>';
-    if(dayActions.length===0)calHTML+='<div class="cal-empty">Sin acciones</div>';
-    else dayActions.forEach(function(a){calHTML+='<div class="cal-item">'+(a.name?'<b>'+a.name+'</b>: ':'')+a.msg+'</div>'});
-    calHTML+='</div>'}
-  calHTML+='</div>';calEl.innerHTML=calHTML;
-
-  var remEl=document.getElementById('reminders');var allNext=[];
-  all.forEach(function(c){
-    if(c.pp)allNext.push({id:c.id,idx:-1,date:'URGENTE',text:c.apodo+': '+c.pp,type:'warn'});
-    if(c.frio)allNext.push({id:c.id,idx:-2,date:'REACTIVAR',text:c.apodo+': '+c.dias+' dias sin contacto',type:'cold'});
-    if(c.seq&&c.seq[0])allNext.push({id:c.id,idx:0,date:c.seq[0].d,text:c.apodo+': '+c.seq[0].m,type:'seq'});
-  });
-  allNext.sort(function(a,b){return a.type==='warn'?-1:b.type==='warn'?1:0});
-  remEl.innerHTML=allNext.length===0?'<div style="color:#3a3630;font-size:11px;font-style:italic;padding:8px">Sin acciones</div>':allNext.slice(0,6).map(function(r){
-    var dk=r.id+'_'+r.idx;var isDone=doneActions[dk];
-    var icon=r.type==='warn'?'&#9888; ':r.type==='cold'?'&#10052; ':'';
-    return '<div class="remind"><div class="remind-left"><div class="remind-date">'+icon+r.date+'</div><div class="remind-text">'+r.text+'</div></div><button class="done-btn '+(isDone?'completed':'')+'" onclick="markDone(\''+r.id+'\','+r.idx+')">'+(isDone?'&#10003; Hecho':'Marcar hecho')+'</button></div>'}).join('');
-
-  var bo=document.getElementById('board');bo.innerHTML='';
-  ET.forEach(function(et){
-    var cards=fc.filter(function(c){return c.etapa===et.k});
-    var col=document.createElement('div');col.className='column '+et.c;
-    col.innerHTML='<div class="col-h"><span class="col-t">'+et.l+'</span><span class="col-c">'+cards.length+'</span></div><div class="col-cards">'+(cards.length===0?'<div class="col-empty">Sin contactos</div>':cards.map(function(c){
-      var senHTML=c.senales.map(function(s){var cl=s.toLowerCase().match(/activo|satisf|insatisf|cobra|refiere|presento/)?'et-v':s.toLowerCase().match(/poco|sin dato|mejor como/)?'et-a':s.toLowerCase().match(/no esta|tarda/)?'et-v':'et-a';return '<span class="etiq '+cl+'">'+s.substring(0,38)+'</span>'}).join('');
-      return '<div class="card" onclick="showC(\''+c.id+'\')"><div class="card-name">'+c.apodo+'</div><div class="card-sub">'+c.name+'</div><div class="card-emp">'+c.empresa+' &middot; '+c.cargo+'</div>'+senHTML+(c.esCliente?'<span class="etiq et-c">CLIENTE</span>':'')+(c.pp?'<div class="card-warn">&#9888; '+c.pp+'</div>':'')+(c.frio?'<div class="card-cold">&#10052; Contacto frio</div>':'')+'<div class="card-foot"><span class="card-days '+(c.venc?'over':'')+'">Hace '+c.dias+'d'+(c.venc?' &#9888;':'')+'</span><span>'+(c.cumple&&c.cumple!=='Desconocido'?'&#127874; '+c.cumple:'')+'</span></div>'+(c.tel?waLink(c.tel,c.seq&&c.seq[0]?c.seq[0].m:''):'')+'</div>'}).join(''))+'</div>';
-    bo.appendChild(col)});
+function renderProfiles(){
+  var fc=C.filter(function(c){return c.prom===user});
+  var q=(document.getElementById('profileSearch')?document.getElementById('profileSearch').value:'').toLowerCase();
+  if(q)fc=fc.filter(function(c){return(c.name+c.apodo+c.empresa+c.industria).toLowerCase().indexOf(q)>=0});
+  var g=document.getElementById('profilesGrid');
+  g.innerHTML=fc.map(function(c){
+    var socials='';
+    if(c.instagram)socials+='<a href="https://instagram.com/'+c.instagram.replace('@','')+'" target="_blank" class="social-link ig">IG</a>';
+    if(c.linkedin)socials+='<a href="https://'+c.linkedin+'" target="_blank" class="social-link li">LinkedIn</a>';
+    if(c.facebook)socials+='<a href="#" class="social-link fb">FB</a>';
+    if(c.twitter)socials+='<a href="https://x.com/'+c.twitter.replace('@','')+'" target="_blank" class="social-link tw">X</a>';
+    var meta='';
+    if(c.bancoActual&&c.bancoActual!=='N/A (referenciadora)')meta+='<span class="meta-tag">Opera con: '+c.bancoActual+'</span>';
+    if(c.volumen&&c.volumen!=='N/A')meta+='<span class="meta-tag">'+c.volumen+'</span>';
+    if(c.pareja)meta+='<span class="meta-tag">Pareja: '+c.pareja+'</span>';
+    if(c.hijos)meta+='<span class="meta-tag">Hijos: '+c.hijos+'</span>';
+    return '<div class="profile-card" onclick="showProfile(\''+c.id+'\')"><div class="profile-top"><div class="profile-avatar">'+initials(c.name)+'</div><div class="profile-info"><div class="profile-name">'+c.apodo+' &mdash; '+c.name+'</div><div class="profile-role">'+c.empresa+' &middot; '+c.cargo+'</div><span class="profile-stage '+stageClass(c.etapa)+'">'+c.etapa+(c.esCliente?' &middot; CLIENTE':'')+'</span></div></div><div class="score-wrap"><div class="score-track"><div class="score-fill" style="width:'+c.score+'%;background:'+scoreColor(c.score)+'"></div></div><div class="score-label"><span>Score relacional</span><b style="color:'+scoreColor(c.score)+'">'+c.score+'/100</b></div></div>'+(socials?'<div class="social-links">'+socials+'</div>':'')+(meta?'<div class="profile-meta">'+meta+'</div>':'')+'</div>'}).join('');
 }
 
-function cumpleMatch(arr,d){var r=null;arr.forEach(function(c){if(c.cumple&&c.cumple!=='Desconocido'){var p=c.cumple.split(' ');var mm={'ene':1,'feb':2,'mar':3,'abr':4,'may':5,'jun':6,'jul':7,'ago':8,'sep':9,'oct':10,'nov':11,'dic':12};if(parseInt(p[0])===d.getDate()&&mm[p[1]]===(d.getMonth()+1))r='&#127874; Cumple de '+c.apodo}});return r}
-
-function showC(id){
+function showProfile(id){
   var c=C.find(function(x){return x.id===id});if(!c)return;
-  var h='<button class="modal-close" onclick="closeM()">&#10005;</button><h2>'+c.apodo+'</h2><p style="color:#7a7468">'+c.name+'<br>'+c.empresa+' &middot; '+c.cargo+'</p>';
-  h+='<h3>Datos</h3><div class="dr"><span class="dl">Etapa:</span><span class="dv">'+c.etapa+'</span></div><div class="dr"><span class="dl">Cumpleanos:</span><span class="dv">'+c.cumple+'</span></div><div class="dr"><span class="dl">Ultimo contacto:</span><span class="dv">Hace '+c.dias+' dias</span></div>'+(c.esCliente?'<div class="dr"><span class="dl">Status:</span><span class="dv" style="color:#60a5fa">Cliente activo ByB</span></div>':'')+(c.pp?'<div class="dr"><span class="dl" style="color:#f87171">Pendiente:</span><span class="dv" style="color:#f87171">'+c.pp+'</span></div>':'');
+  var h='<button class="modal-close" onclick="closeM()">&#10005;</button>';
+  h+='<div style="display:flex;gap:12px;align-items:flex-start"><div class="profile-avatar" style="width:50px;height:50px;font-size:17px">'+initials(c.name)+'</div><div><h2>'+c.apodo+'</h2><p style="color:#7a7468;margin:0">'+c.name+'<br>'+c.empresa+' &middot; '+c.cargo+' &middot; '+c.zona+'</p></div></div>';
+
+  // Score visual
+  h+='<div class="score-wrap" style="margin:12px 0"><div class="score-track" style="height:8px"><div class="score-fill" style="width:'+c.score+'%;background:'+scoreColor(c.score)+'"></div></div><div class="score-label"><span>'+c.etapa+(c.esCliente?' &middot; Cliente activo ByB':'')+'</span><b style="color:'+scoreColor(c.score)+'">'+c.score+'/100</b></div></div>';
+
+  // Datos generales
+  h+='<h3>Datos</h3>';
+  h+='<div class="dr"><span class="dl">Industria:</span><span class="dv">'+c.industria+'</span></div>';
+  h+='<div class="dr"><span class="dl">Zona:</span><span class="dv">'+c.zona+'</span></div>';
+  h+='<div class="dr"><span class="dl">Cumpleanos:</span><span class="dv">'+c.cumple+'</span></div>';
+  h+='<div class="dr"><span class="dl">Ultimo contacto:</span><span class="dv">Hace '+c.dias+' dias</span></div>';
+  h+='<div class="dr"><span class="dl">Telefono:</span><span class="dv">'+c.tel+'</span></div>';
+  if(c.pp)h+='<div class="dr"><span class="dl" style="color:#f87171">Pendiente:</span><span class="dv" style="color:#f87171">'+c.pp+'</span></div>';
+
+  // Redes sociales
+  if(c.instagram||c.linkedin||c.facebook||c.twitter){
+    h+='<h3>Redes sociales</h3><div class="social-links" style="margin:4px 0">';
+    if(c.instagram)h+='<a href="https://instagram.com/'+c.instagram.replace('@','')+'" target="_blank" class="social-link ig">'+c.instagram+'</a>';
+    if(c.linkedin)h+='<a href="https://'+c.linkedin+'" target="_blank" class="social-link li">LinkedIn</a>';
+    if(c.facebook)h+='<a href="#" class="social-link fb">'+c.facebook+'</a>';
+    if(c.twitter)h+='<a href="https://x.com/'+c.twitter.replace('@','')+'" target="_blank" class="social-link tw">'+c.twitter+'</a>';
+    h+='</div>'}
+
+  // Familia
+  if(c.pareja||c.hijos){
+    h+='<h3>Familia</h3>';
+    if(c.pareja)h+='<div class="family-row"><span class="family-icon">&#10084;</span> <b>'+c.pareja+'</b>'+(c.cumplePareja?' &mdash; Cumple: '+c.cumplePareja:'')+'</div>';
+    if(c.hijos)h+='<div class="family-row"><span class="family-icon">&#128118;</span> '+c.hijos+'</div>'}
+
+  // Banco y volumen
+  if(c.bancoActual&&c.bancoActual!=='N/A (referenciadora)'){
+    h+='<h3>Informacion financiera</h3>';
+    h+='<div class="dr"><span class="dl">Opera con:</span><span class="dv" style="color:#fbbf24">'+c.bancoActual+'</span></div>';
+    h+='<div class="dr"><span class="dl">Volumen est.:</span><span class="dv" style="color:#c9956b">'+c.volumen+'</span></div>'}
+
+  // Como tratarlo
   if(c.comoTratarlo)h+='<h3>Como tratar a esta persona</h3><div class="tip-box"><div class="tip-text">'+c.comoTratarlo+'</div></div>';
-  h+='<h3>Senales</h3>'+c.senales.map(function(s){return '<p>'+s+'</p>'}).join('');
-  h+='<h3>Proximos 5 pasos</h3>'+c.seq.map(function(s,i){var dk=c.id+'_'+i;var isDone=doneActions[dk];return '<div class="seq"><div class="seq-left"><div class="seq-d">Paso '+(i+1)+' - '+s.d+'</div><div class="seq-m">'+s.m+'</div></div><button class="done-btn '+(isDone?'completed':'')+'" onclick="markDone(\''+c.id+'\','+i+');showC(\''+c.id+'\');">'+(isDone?'&#10003;':'&#9744;')+'</button></div>'}).join('');
+
+  // Senales
+  h+='<h3>Senales detectadas</h3>'+c.senales.map(function(s){return '<p>'+s+'</p>'}).join('');
+
+  // Historial de interacciones
+  if(c.historial&&c.historial.length>0){
+    h+='<h3>Historial de interacciones</h3><div class="timeline">';
+    c.historial.forEach(function(hi){h+='<div class="tl-item"><div class="tl-dot"></div><div><div class="tl-date">'+hi.fecha+' &mdash; '+hi.tipo+'</div><div class="tl-desc">'+hi.desc+'</div></div></div>'});
+    h+='</div>'}
+
+  // Conexiones cruzadas
+  if(c.conexiones&&c.conexiones.length>0){
+    h+='<h3>Conexiones cruzadas</h3>';
+    c.conexiones.forEach(function(cn){h+='<div class="conn-item"><b style="color:#c9956b">'+cn.nombre+'</b><span class="conn-arrow">&#10231;</span><span style="color:#b0a89a">'+cn.razon+'</span></div>'})}
+
+  // Proximos 5 pasos
+  h+='<h3>Proximos 5 pasos</h3>'+c.seq.map(function(s,i){var dk=c.id+'_'+i;var isDone=doneActions[dk];return '<div class="seq"><div class="seq-left"><div class="seq-d">Paso '+(i+1)+' - '+s.d+'</div><div class="seq-m">'+s.m+'</div></div><button class="done-btn '+(isDone?'completed':'')+'" onclick="markDone(\''+c.id+'\','+i+');showProfile(\''+c.id+'\');">'+(isDone?'&#10003;':'&#9744;')+'</button></div>'}).join('');
+
+  // WhatsApp
   if(c.tel)h+='<div style="margin-top:8px">'+waLink(c.tel,c.seq[0]?c.seq[0].m:'')+'</div>';
+
+  // Guion de llamada
   if(c.guionLlamada)h+='<h3>Si necesitas llamar</h3><div class="tip-box"><div class="tip-title">Guion sugerido</div><div class="tip-text">'+c.guionLlamada+'</div></div>';
+
+  // Regalo
   if(c.regalo)h+='<h3>Sugerencia de regalo</h3><div class="tip-box"><div class="tip-title">Basado en sus intereses</div><div class="tip-text">'+c.regalo+'</div></div>';
+
   document.getElementById('modal').innerHTML=h;document.getElementById('overlay').classList.add('active');
 }
+function render(){
+  var all=C.filter(function(c){return c.prom===user});var fc=getFiltered();
+  var pp=all.filter(function(c){return c.pp}).length;var frios=all.filter(function(c){return c.frio}).length;
+  var clientes=all.filter(function(c){return c.esCliente}).length;var vencidos=all.filter(function(c){return c.venc}).length;
+  document.getElementById('pCard').innerHTML='<div><div class="pname">'+user+'</div><div style="color:#7a7468;font-size:10px">'+all.length+' contactos en tu red</div></div><div class="pstats"><div class="ps"><div class="v">'+all.length+'</div><div class="l">Contactos</div></div><div class="ps ok"><div class="v">'+clientes+'</div><div class="l">Clientes</div></div><div class="ps '+(pp>0?'a':'')+'"><div class="v">'+pp+'</div><div class="l">Pendientes</div></div><div class="ps '+(vencidos>0?'a':'')+'"><div class="v">'+vencidos+'</div><div class="l">Vencidos</div></div><div class="ps '+(frios>0?'a':'')+'"><div class="v">'+frios+'</div><div class="l">Frios</div></div></div>';
+  var doneCount=Object.keys(doneActions).filter(function(k){return doneActions[k]}).length;
+  var totalSeqs=all.reduce(function(a,c){return a+c.seq.length},0);
+  document.getElementById('progressBar').innerHTML='<h3>Progreso del mes</h3><div class="progress-row"><div class="progress-item"><b>'+all.length+'</b> contactos</div><div class="progress-item"><b>'+clientes+'</b> clientes</div><div class="progress-item"><b>'+doneCount+'</b>/'+totalSeqs+' acciones</div><div class="progress-item"><b>'+pp+'</b> promesas</div></div>';
+  var calEl=document.getElementById('calendarSection');var today=new Date();var calHTML='<h3>Calendario de la semana</h3><div class="cal-grid">';
+  for(var d=0;d<7;d++){var day=new Date(today);day.setDate(today.getDate()+d);var dayStr=DAYS[day.getDay()]+' '+day.getDate()+'/'+(day.getMonth()+1);var isToday=d===0;var dayActions=[];
+  all.forEach(function(c){if(c.seq){c.seq.forEach(function(s){var parts=s.d.split(' ');if(parts.length>=2){var dm=parseInt(parts[0]);var mm={'ene':1,'feb':2,'mar':3,'abr':4,'may':5,'jun':6,'jul':7,'ago':8,'sep':9,'oct':10,'nov':11,'dic':12}[parts[1]];if(dm===day.getDate()&&mm===(day.getMonth()+1))dayActions.push({name:c.apodo,msg:s.m})}})}});
+  calHTML+='<div class="cal-day '+(isToday?'today':'')+'"><div class="cal-day-title">'+dayStr+'</div>';
+  if(dayActions.length===0)calHTML+='<div class="cal-empty">Sin acciones</div>';
+  else dayActions.forEach(function(a){calHTML+='<div class="cal-item"><b>'+a.name+'</b>: '+a.msg+'</div>'});calHTML+='</div>'}
+  calHTML+='</div>';calEl.innerHTML=calHTML;
+  var remEl=document.getElementById('reminders');var allNext=[];
+  all.forEach(function(c){if(c.pp)allNext.push({id:c.id,idx:-1,date:'URGENTE',text:c.apodo+': '+c.pp,type:'warn'});if(c.frio)allNext.push({id:c.id,idx:-2,date:'REACTIVAR',text:c.apodo+': '+c.dias+' dias sin contacto',type:'cold'});if(c.seq&&c.seq[0])allNext.push({id:c.id,idx:0,date:c.seq[0].d,text:c.apodo+': '+c.seq[0].m,type:'seq'})});
+  allNext.sort(function(a,b){return a.type==='warn'?-1:b.type==='warn'?1:0});
+  remEl.innerHTML=allNext.length===0?'<div style="color:#3a3630;font-size:11px;padding:8px">Sin acciones</div>':allNext.slice(0,6).map(function(r){var dk=r.id+'_'+r.idx;var isDone=doneActions[dk];var icon=r.type==='warn'?'&#9888; ':r.type==='cold'?'&#10052; ':'';return '<div class="remind"><div class="remind-left"><div class="remind-date">'+icon+r.date+'</div><div class="remind-text">'+r.text+'</div></div><button class="done-btn '+(isDone?'completed':'')+'" onclick="markDone(\''+r.id+'\','+r.idx+')">'+(isDone?'&#10003; Hecho':'Marcar hecho')+'</button></div>'}).join('');
+  var bo=document.getElementById('board');bo.innerHTML='';
+  ET.forEach(function(et){var cards=fc.filter(function(c){return c.etapa===et.k});var col=document.createElement('div');col.className='column '+et.c;
+  col.innerHTML='<div class="col-h"><span class="col-t">'+et.l+'</span><span class="col-c">'+cards.length+'</span></div><div class="col-cards">'+(cards.length===0?'<div class="col-empty">Sin contactos</div>':cards.map(function(c){var senHTML=c.senales.map(function(s){var cl=s.toLowerCase().match(/activo|satisf|insatisf|cobra|refiere|presento/)?'et-v':s.toLowerCase().match(/poco|sin dato|mejor como/)?'et-a':'et-a';return '<span class="etiq '+cl+'">'+s.substring(0,35)+'</span>'}).join('');return '<div class="card" onclick="showProfile(\''+c.id+'\')"><div class="card-name">'+c.apodo+'</div><div class="card-sub">'+c.name+'</div><div class="card-emp">'+c.empresa+' &middot; '+c.cargo+'</div>'+senHTML+(c.esCliente?'<span class="etiq et-c">CLIENTE</span>':'')+(c.pp?'<div class="card-warn">&#9888; '+c.pp+'</div>':'')+(c.frio?'<div class="card-cold">&#10052; Contacto frio</div>':'')+'<div class="card-foot"><span class="card-days '+(c.venc?'over':'')+'">Hace '+c.dias+'d'+(c.venc?' &#9888;':'')+'</span><span>'+(c.cumple&&c.cumple!=='Desconocido'?'&#127874; '+c.cumple:'')+'</span></div>'+(c.tel?waLink(c.tel,c.seq&&c.seq[0]?c.seq[0].m:''):'')+'</div>'}).join(''))+'</div>';bo.appendChild(col)})}
 function closeM(){document.getElementById('overlay').classList.remove('active')}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM()});
 initLogin();
