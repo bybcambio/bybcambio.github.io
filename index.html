@@ -56,12 +56,15 @@ textarea{min-height:80px;resize:vertical;line-height:1.5}
 .btn-back,.btn-next,.btn-submit{padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;touch-action:manipulation}
 .btn-back{flex:1;background:#1e1c19;border:1px solid #3a3630;color:#b0a89a}
 .btn-next{flex:2;background:linear-gradient(135deg,#c9956b,#a07040);border:none;color:#14120f;transition:all 0.3s}
-.btn-next:disabled{background:#2a2722;color:#5a5449;cursor:not-allowed}
 .btn-submit{flex:2;background:linear-gradient(135deg,#c9956b,#a07040);border:none;color:#14120f;box-shadow:0 4px 20px rgba(201,149,107,0.2)}
 .done-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
 .done-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#c9956b,#a07040);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px}
 .hidden{display:none}
-@media(max-width:600px){.aff-btn,.opp-btn{font-size:11px;padding:8px 6px}.summary-row{flex-direction:column;gap:2px}.summary-row .label{width:auto}}
+.social-row{display:flex;gap:8px;margin-bottom:12px}
+.social-row .social-field{flex:1}
+.social-row .social-field label{font-size:11px;margin-bottom:4px}
+.social-row .social-field input{padding:10px 12px;font-size:13px}
+@media(max-width:600px){.aff-btn,.opp-btn{font-size:11px;padding:8px 6px}.summary-row{flex-direction:column;gap:2px}.summary-row .label{width:auto}.social-row{flex-direction:column;gap:0}}
 </style>
 </head>
 <body>
@@ -76,17 +79,17 @@ textarea{min-height:80px;resize:vertical;line-height:1.5}
 <div class="content" id="stepsContainer">
 
 <div class="step" data-step="0">
-<div class="field"><label>Nombre del promotor <span class="req">*</span></label><div class="sub">Tu nombre (quien registra este contacto)</div><input id="promotor" placeholder="Ej: Carlos Ramirez"></div>
-<div class="field"><label>Nombre completo del contacto <span class="req">*</span></label><div class="sub">Se guardara en MAYUSCULAS</div><input id="nombre" placeholder="Ej: Juan Perez Gonzalez"></div>
+<div class="field"><label>Nombre del promotor</label><div class="sub">Tu nombre (quien registra este contacto)</div><input id="promotor" placeholder="Ej: Carlos Ramirez"></div>
+<div class="field"><label>Nombre completo del contacto</label><div class="sub">Se guardara en MAYUSCULAS</div><input id="nombre" placeholder="Ej: Juan Perez Gonzalez"></div>
 <div class="field"><label>Apodo / Como le dicen</label><input id="apodo" placeholder="Ej: Juanito"></div>
-<div class="field"><label>Categoria <span class="req">*</span></label><select id="categoria"><option value="">-- Seleccionar --</option><option>Cliente</option><option>Prospecto</option><option>Aliado</option><option>Mentor</option><option>Amigo</option><option>Referenciador</option><option>Proveedor</option><option>Familia</option><option>Partner</option></select></div>
-<div class="field"><label>Etapa de la relacion <span class="req">*</span></label><div class="sub">En que momento de la relacion estas con esta persona?</div><select id="etapaRelacional"><option value="Conocido nuevo">Conocido nuevo - Apenas nos presentaron</option><option value="En desarrollo">En desarrollo - Ya hemos hablado 2-3 veces</option><option value="Confianza">Confianza - Hay relacion personal, me busca</option><option value="Aliado">Aliado - Me refiere gente o me ayuda activamente</option><option value="Socio">Socio - Hacemos negocios juntos</option></select></div>
+<div class="field"><label>Categoria</label><select id="categoria"><option value="">-- Seleccionar --</option><option>Cliente</option><option>Prospecto</option><option>Aliado</option><option>Mentor</option><option>Amigo</option><option>Referenciador</option><option>Proveedor</option><option>Familia</option><option>Partner</option></select></div>
+<div class="field"><label>Etapa de la relacion</label><div class="sub">En que momento de la relacion estas con esta persona?</div><select id="etapaRelacional"><option value="Conocido nuevo">Conocido nuevo - Apenas nos presentaron</option><option value="En desarrollo">En desarrollo - Ya hemos hablado 2-3 veces</option><option value="Confianza">Confianza - Hay relacion personal, me busca</option><option value="Aliado">Aliado - Me refiere gente o me ayuda activamente</option><option value="Socio">Socio - Hacemos negocios juntos</option></select></div>
 <div class="field"><label>Prioridad de contacto</label><select id="prioridad"><option value="A">A - Contacto cada 3 semanas</option><option value="B" selected>B - Contacto cada 7 semanas</option><option value="C">C - Contacto cada 4 meses</option></select></div>
 <div class="field"><label>Nivel de afinidad</label><div class="sub">1 = Muy cercano, 5 = Apenas lo conozco</div><div class="aff-group" id="affGroup"><button class="aff-btn" data-val="1">1 Cercano</button><button class="aff-btn" data-val="2">2</button><button class="aff-btn active" data-val="3">3</button><button class="aff-btn" data-val="4">4</button><button class="aff-btn" data-val="5">5 Lejano</button></div></div>
 </div>
 
 <div class="step hidden" data-step="1">
-<div class="field"><label>Empresa <span class="req">*</span></label><input id="empresa" placeholder="Ej: Grupo Industrial MX"></div>
+<div class="field"><label>Empresa</label><input id="empresa" placeholder="Ej: Grupo Industrial MX"></div>
 <div class="field"><label>Cargo</label><input id="cargo" placeholder="Ej: Socio, Dir. General"></div>
 <div class="field"><label>Industria / Sector</label><input id="industria" placeholder="Ej: Construccion, Tech, Finanzas..."></div>
 <div class="field"><label>Ciudad / Zona</label><input id="ciudadZona" value="CDMX - Poniente"></div>
@@ -95,20 +98,24 @@ textarea{min-height:80px;resize:vertical;line-height:1.5}
 </div>
 
 <div class="step hidden" data-step="2">
-<div class="field"><label>Telefono <span class="req">*</span></label><input id="telefono" placeholder="Ej: 55 1234 5678"></div>
+<div class="field"><label>Telefono</label><input id="telefono" placeholder="Ej: 55 1234 5678"></div>
 <div class="field"><label>Email</label><input type="email" id="email" placeholder="Ej: juan@empresa.com"></div>
-<div class="field"><label>Canal preferido</label><select id="canalPreferido"><option selected>WhatsApp</option><option>Llamada</option><option>Email</option></select></div>
+<div class="field"><label>Redes sociales</label><div class="sub">Agrega las que tengas disponibles</div>
+<div class="social-row"><div class="social-field"><label>Instagram</label><input id="instagram" placeholder="@usuario"></div><div class="social-field"><label>LinkedIn</label><input id="linkedin" placeholder="linkedin.com/in/usuario"></div></div>
+<div class="social-row"><div class="social-field"><label>Facebook</label><input id="facebook" placeholder="Nombre o URL"></div><div class="social-field"><label>X (Twitter)</label><input id="twitter" placeholder="@usuario"></div></div>
+</div>
+<div class="field"><label>Canal preferido</label><select id="canalPreferido"><option selected>WhatsApp</option><option>Llamada</option><option>Email</option><option>Instagram DM</option><option>LinkedIn</option></select></div>
 <div class="field"><label>Ventana ideal</label><div class="sub">Horario en que prefiere ser contactado</div><select id="ventanaIdeal"><option>AM (8-12)</option><option selected>PM (12-6)</option><option>Noche (6-10)</option></select></div>
 </div>
 
 <div class="step hidden" data-step="3">
 <div class="field"><label>Fecha de cumpleanos</label><input type="date" id="cumpleanos"></div>
-<div class="field"><label>Nombre de pareja</label><div class="sub">Si no tiene, escribe: --</div><input id="pareja" placeholder="Ej: Maria Gonzalez"></div>
+<div class="field"><label>Nombre de pareja</label><div class="sub">Si no tiene o no sabes, dejalo vacio</div><input id="pareja" placeholder="Ej: Maria Gonzalez"></div>
 <div class="field"><label>Cumpleanos de la pareja</label><input type="date" id="cumplePareja"></div>
-<div class="field"><label>Hijos (nombres y edades)</label><div class="sub">Si no tiene, escribe: No tiene</div><textarea id="hijos" placeholder="Ej: Sofia (8), Diego (5)"></textarea></div>
+<div class="field"><label>Hijos (nombres y edades)</label><div class="sub">Si no tiene o no sabes, dejalo vacio</div><textarea id="hijos" placeholder="Ej: Sofia (8), Diego (5)"></textarea></div>
 </div>
 <div class="step hidden" data-step="4">
-<div class="field"><label>Intereses personales (3 principales) <span class="req">*</span></label><div class="sub">Que le gusta fuera del trabajo? Hobbies, deportes, pasiones</div><textarea id="interesesPersonales" placeholder="Ej: golf, vinos, historia, NFL, coches clasicos..."></textarea></div>
+<div class="field"><label>Intereses personales (hobbies, deportes, pasiones)</label><div class="sub">Que le gusta fuera del trabajo?</div><textarea id="interesesPersonales" placeholder="Ej: golf, vinos, historia, NFL, coches clasicos..."></textarea></div>
 <div class="field"><label>Intereses profesionales / temas</label><div class="sub">Que busca en negocios? Que proyectos tiene?</div><textarea id="interesesProfesionales" placeholder="Ej: Expandir a nuevos mercados, optimizar costos de importacion..."></textarea></div>
 <div class="field"><label>Oportunidad para ByB</label><div class="sub">Detectas alguna necesidad donde ByB pueda ayudar?</div><div style="display:flex;flex-wrap:wrap;gap:8px" id="oportunidadByB"><button class="opp-btn" data-opp="Importa/Exporta">Importa o exporta</button><button class="opp-btn" data-opp="Paga proveedores en USD/EUR">Paga en USD/EUR</button><button class="opp-btn" data-opp="Viaja frecuentemente">Viaja frecuentemente</button><button class="opp-btn" data-opp="Operaciones corporativas en divisas">Ops corporativas divisas</button><button class="opp-btn" data-opp="Inversiones internacionales">Inversiones intl</button><button class="opp-btn" data-opp="Recibe pagos del exterior">Recibe pagos exterior</button><button class="opp-btn" data-opp="No detectada aun">No detectada aun</button></div></div>
 <div class="field"><label>Que valor puedo ofrecerle?</label><div class="sub">Como puedo ayudar a esta persona desde ByB o mi red?</div><textarea id="valorQueOfrezco" placeholder="Ej: Tipo de cambio preferencial, conectarlo con importadores..."></textarea></div>
@@ -116,7 +123,7 @@ textarea{min-height:80px;resize:vertical;line-height:1.5}
 </div>
 
 <div class="step hidden" data-step="5">
-<div class="info-box"><div class="title">ULTIMA INTERACCION</div><p>Si ya tuviste un primer contacto con esta persona, registra los detalles. Si aun no, puedes dejarlo en blanco.</p></div>
+<div class="info-box"><div class="title">ULTIMA INTERACCION</div><p>Si ya tuviste un primer contacto con esta persona, registra los detalles. Si aun no, puedes dejarlo en blanco y avanzar.</p></div>
 <div class="field"><label>Fecha de la interaccion</label><input type="date" id="fechaInteraccion"></div>
 <div class="field"><label>Tipo de interaccion</label><select id="tipoInteraccion"><option>Comida</option><option>Cazita</option><option>Cafe</option><option>Llamada</option><option>Intro</option><option>Mensaje</option><option>Evento (otro)</option><option>Club del vino</option></select></div>
 <div class="field"><label>Notas personales</label><div class="sub">De que hablaron a nivel personal?</div><textarea id="notasHumanas" placeholder="Ej: Me conto que su hijo entra a la universidad..."></textarea></div>
@@ -166,13 +173,7 @@ document.getElementById('oportunidadByB').addEventListener('click',function(e){
 
 function val(id){return(document.getElementById(id)?document.getElementById(id).value:'').trim()}
 
-function canNext(){
-  if(currentStep===0)return val('promotor')&&val('nombre')&&val('categoria');
-  if(currentStep===1)return val('empresa');
-  if(currentStep===2)return val('telefono');
-  if(currentStep===4)return val('interesesPersonales');
-  return true;
-}
+function canNext(){return true}
 
 function goStep(n){
   if(n===6)buildSummary();
@@ -193,41 +194,41 @@ function renderProgress(){
 function renderNav(){
   var nav=document.getElementById('navButtons');var h='';
   if(currentStep>0)h+='<button class="btn-back" onclick="goStep('+(currentStep-1)+')">Anterior</button>';
-  if(currentStep<6)h+='<button class="btn-next" id="nextBtn" onclick="if(canNext())goStep('+(currentStep+1)+')">Siguiente</button>';
+  if(currentStep<6)h+='<button class="btn-next" onclick="goStep('+(currentStep+1)+')">Siguiente</button>';
   else h+='<button class="btn-submit" onclick="generateExcel()">Generar y Descargar Excel</button>';
   nav.innerHTML=h;
-  setTimeout(function(){var nb=document.getElementById('nextBtn');if(nb)nb.disabled=!canNext()},50);
 }
-
-document.addEventListener('input',function(){var nb=document.getElementById('nextBtn');if(nb)nb.disabled=!canNext()});
 
 function summaryRow(l,v){if(!v)return '';return '<div class="summary-row"><span class="label">'+l+'</span><span class="value">'+v+'</span></div>'}
 
 function calcNext(p,f){var d=new Date(f||new Date());d.setDate(d.getDate()+(p==='A'?21:p==='B'?49:120));return d.toISOString().split('T')[0]}
 function calcFU(f){var d=new Date(f||new Date());var a=0;while(a<3){d.setDate(d.getDate()+1);if(d.getDay()!==0&&d.getDay()!==6)a++}return d.toISOString().split('T')[0]}
 
+function socialSummary(){var parts=[];if(val('instagram'))parts.push('IG: '+val('instagram'));if(val('linkedin'))parts.push('LI: '+val('linkedin'));if(val('facebook'))parts.push('FB: '+val('facebook'));if(val('twitter'))parts.push('X: '+val('twitter'));return parts.join(' | ')}
+
 function buildSummary(){
   var hi=val('notasHumanas')||val('notasProfesionales')||val('valorPrometido');
   var nc=calcNext(val('prioridad'),val('fechaInteraccion'));
   var fu=calcFU(val('fechaInteraccion'));
+  var ss=socialSummary();
   var h='<div class="summary-card"><h3>Datos del contacto</h3>'+summaryRow('Promotor',val('promotor'))+summaryRow('Nombre',val('nombre').toUpperCase())+summaryRow('Apodo',val('apodo'))+summaryRow('Categoria',val('categoria'))+summaryRow('Etapa',val('etapaRelacional'))+summaryRow('Prioridad',val('prioridad'))+summaryRow('Afinidad',afinidad+'/5')+'</div>';
-  h+='<div class="summary-card"><h3>Empresa y contacto</h3>'+summaryRow('Empresa',val('empresa'))+summaryRow('Cargo',val('cargo'))+summaryRow('Industria',val('industria'))+summaryRow('Ciudad',val('ciudadZona'))+summaryRow('Telefono',val('telefono'))+summaryRow('Email',val('email'))+summaryRow('Canal',val('canalPreferido'))+summaryRow('Ventana',val('ventanaIdeal'))+summaryRow('Fuente',val('conocidoPor'))+'</div>';
+  h+='<div class="summary-card"><h3>Empresa y contacto</h3>'+summaryRow('Empresa',val('empresa'))+summaryRow('Cargo',val('cargo'))+summaryRow('Industria',val('industria'))+summaryRow('Ciudad',val('ciudadZona'))+summaryRow('Telefono',val('telefono'))+summaryRow('Email',val('email'))+summaryRow('Redes sociales',ss)+summaryRow('Canal',val('canalPreferido'))+summaryRow('Ventana',val('ventanaIdeal'))+summaryRow('Fuente',val('conocidoPor'))+'</div>';
   h+='<div class="summary-card"><h3>Personal e intereses</h3>'+summaryRow('Cumpleanos',val('cumpleanos'))+summaryRow('Pareja',val('pareja'))+summaryRow('Hijos',val('hijos'))+summaryRow('Intereses',val('interesesPersonales'))+summaryRow('Int. prof.',val('interesesProfesionales'))+summaryRow('Oportunidad ByB',oportunidades.join(', ')||'No detectada')+summaryRow('Valor a ofrecer',val('valorQueOfrezco'))+summaryRow('Detalles',val('detallesUtiles'))+'</div>';
   if(hi)h+='<div class="summary-card"><h3>Interaccion</h3>'+summaryRow('Fecha',val('fechaInteraccion'))+summaryRow('Tipo',val('tipoInteraccion'))+summaryRow('Notas humanas',val('notasHumanas'))+summaryRow('Notas prof.',val('notasProfesionales'))+summaryRow('Valor prometido',val('valorPrometido'))+summaryRow('Siguiente paso',val('siguientePaso'))+'</div>';
-  h+='<div class="calc-box"><div class="title">El Excel incluira:</div><p>Hoja <strong>Contactos</strong> con 31 campos | Proximo contacto: <strong>'+nc+'</strong>'+(hi?' | Hoja <strong>Interacciones</strong> con follow-up: <strong>'+fu+'</strong>':'')+(val('cumpleanos')?' | <strong>Recordatorios</strong> de cumpleanos':'')+'</p></div>';
+  h+='<div class="calc-box"><div class="title">El Excel incluira:</div><p>Hoja <strong>Contactos</strong> con 35 campos | Proximo contacto: <strong>'+nc+'</strong>'+(hi?' | Hoja <strong>Interacciones</strong> con follow-up: <strong>'+fu+'</strong>':'')+(val('cumpleanos')?' | <strong>Recordatorios</strong> de cumpleanos':'')+'</p></div>';
   document.getElementById('summaryStep').innerHTML=h;
 }
 
 function generateExcel(){
   if(typeof XLSX==='undefined'){alert('La libreria de Excel esta cargando. Verifica tu conexion a internet y vuelve a intentar.');return}
-  var wb=XLSX.utils.book_new();var n=val('nombre').toUpperCase();var f=val('fechaInteraccion')||new Date().toISOString().split('T')[0];
-  var cH=["ID","Nombre","Apodo","Categoria","Prioridad","Afinidad","Etapa relacional","Empresa","Cargo","Industria","Ciudad/Zona","Telefono","Email","Canal preferido","Ventana ideal","Conocido por","Fecha primer contacto","Ultima interaccion","Tipo ultima interaccion","Proximo contacto sugerido","Siguiente paso","Cumpleanos","Pareja","Cumpleanos pareja","Hijos","Intereses personales","Intereses profesionales","Oportunidad ByB","Valor que ofrezco","Detalles utiles","Promotor"];
-  var cR=["PENDIENTE",n,val('apodo'),val('categoria'),val('prioridad'),parseInt(afinidad),val('etapaRelacional'),val('empresa'),val('cargo'),val('industria'),val('ciudadZona'),val('telefono'),val('email'),val('canalPreferido'),val('ventanaIdeal'),val('conocidoPor'),val('fechaPrimerContacto'),f,val('tipoInteraccion'),calcNext(val('prioridad'),f),val('siguientePaso'),val('cumpleanos'),val('pareja'),val('cumplePareja'),val('hijos'),val('interesesPersonales'),val('interesesProfesionales'),oportunidades.join(', ')||'No detectada',val('valorQueOfrezco'),val('detallesUtiles'),val('promotor')];
-  var ws=XLSX.utils.aoa_to_sheet([cH,cR]);ws['!cols']=cH.map(function(_,i){return{wch:i===1?24:i>=24?30:18}});
+  var wb=XLSX.utils.book_new();var n=val('nombre').toUpperCase()||'SIN_NOMBRE';var f=val('fechaInteraccion')||new Date().toISOString().split('T')[0];
+  var cH=["ID","Nombre","Apodo","Categoria","Prioridad","Afinidad","Etapa relacional","Empresa","Cargo","Industria","Ciudad/Zona","Telefono","Email","Instagram","LinkedIn","Facebook","X (Twitter)","Canal preferido","Ventana ideal","Conocido por","Fecha primer contacto","Ultima interaccion","Tipo ultima interaccion","Proximo contacto sugerido","Siguiente paso","Cumpleanos","Pareja","Cumpleanos pareja","Hijos","Intereses personales","Intereses profesionales","Oportunidad ByB","Valor que ofrezco","Detalles utiles","Promotor"];
+  var cR=["PENDIENTE",n,val('apodo'),val('categoria'),val('prioridad'),parseInt(afinidad),val('etapaRelacional'),val('empresa'),val('cargo'),val('industria'),val('ciudadZona'),val('telefono'),val('email'),val('instagram'),val('linkedin'),val('facebook'),val('twitter'),val('canalPreferido'),val('ventanaIdeal'),val('conocidoPor'),val('fechaPrimerContacto'),f,val('tipoInteraccion'),calcNext(val('prioridad'),f),val('siguientePaso'),val('cumpleanos'),val('pareja'),val('cumplePareja'),val('hijos'),val('interesesPersonales'),val('interesesProfesionales'),oportunidades.join(', ')||'No detectada',val('valorQueOfrezco'),val('detallesUtiles'),val('promotor')];
+  var ws=XLSX.utils.aoa_to_sheet([cH,cR]);ws['!cols']=cH.map(function(_,i){return{wch:i===1?24:i>=28?30:18}});
   XLSX.utils.book_append_sheet(wb,ws,"Contactos");
   var hi=val('notasHumanas')||val('notasProfesionales')||val('valorPrometido');
   if(hi){var iH=["Fecha","ID Contacto","Nombre","Tipo","Notas humanas","Notas profesionales","Valor prometido","Fecha follow-up","Estado","Siguiente paso"];var iR=[f,"PENDIENTE",n,val('tipoInteraccion'),val('notasHumanas'),val('notasProfesionales'),val('valorPrometido'),calcFU(f),"Pendiente",val('siguientePaso')];var wi=XLSX.utils.aoa_to_sheet([iH,iR]);wi['!cols']=iH.map(function(_,i){return{wch:i>=4&&i<=6?34:18}});XLSX.utils.book_append_sheet(wb,wi,"Interacciones")}
-  if(val('cumpleanos')){var rH=["Fecha","Tipo","ID Contacto","Nombre","Detalle","Canal","Estado","Notas"];var rw=[[val('cumpleanos'),"Cumpleanos","PENDIENTE",n,"Cumpleanos de "+(val('apodo')||val('nombre'))+" (NO vender)","WhatsApp","Pendiente",""]];if(val('cumplePareja')&&val('pareja')&&val('pareja')!=='--')rw.push([val('cumplePareja'),"Cumpleanos","PENDIENTE",n,"Cumpleanos de "+val('pareja')+" (pareja)","WhatsApp","Pendiente",""]);var wr=XLSX.utils.aoa_to_sheet([rH].concat(rw));XLSX.utils.book_append_sheet(wb,wr,"Recordatorios")}
+  if(val('cumpleanos')){var rH=["Fecha","Tipo","ID Contacto","Nombre","Detalle","Canal","Estado","Notas"];var rw=[[val('cumpleanos'),"Cumpleanos","PENDIENTE",n,"Cumpleanos de "+(val('apodo')||val('nombre'))+" (NO vender)","WhatsApp","Pendiente",""]];if(val('cumplePareja')&&val('pareja'))rw.push([val('cumplePareja'),"Cumpleanos","PENDIENTE",n,"Cumpleanos de "+val('pareja')+" (pareja)","WhatsApp","Pendiente",""]);var wr=XLSX.utils.aoa_to_sheet([rH].concat(rw));XLSX.utils.book_append_sheet(wb,wr,"Recordatorios")}
   XLSX.writeFile(wb,'RP_'+n.replace(/\s+/g,'_')+'_'+new Date().toISOString().split('T')[0]+'.xlsx');
   document.getElementById('app').classList.add('hidden');document.getElementById('doneScreen').classList.remove('hidden');
   document.getElementById('doneName').textContent=n;
