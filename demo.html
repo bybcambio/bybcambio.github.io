@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByB Sistema RP — Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0f0d0a;font-family:'DM Sans',sans-serif;color:#e8e2d8;min-height:100vh}
+.header{background:linear-gradient(180deg,#1a1816,#0f0d0a);border-bottom:1px solid #2a2722;padding:20px 24px}
+.header-inner{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#c9956b,#a07040);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#14120f}
+.brand h1{font-size:16px;color:#e8e2d8}
+.brand span{color:#7a7468;font-size:10px;display:block}
+.badge{padding:4px 10px;border-radius:6px;background:rgba(201,149,107,0.15);color:#c9956b;font-size:10px;font-weight:600}
+.content{max-width:720px;margin:0 auto;padding:24px}
+.intro{text-align:center;margin-bottom:32px}
+.intro h2{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:8px}
+.intro p{color:#7a7468;font-size:13px;line-height:1.6}
+.step{background:#1a1816;border:1px solid #2a2722;border-radius:12px;margin-bottom:12px;overflow:hidden;transition:all 0.3s}
+.step.collapsed .step-body{display:none}
+.step-header{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:#2a2722;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#7a7468;flex-shrink:0}
+.step.active .step-num{background:linear-gradient(135deg,#c9956b,#a07040);color:#14120f}
+.step-info{flex:1}
+.step-title{font-weight:700;font-size:14px;color:#e8e2d8}
+.step-sub{font-size:11px;color:#7a7468;margin-top:2px}
+.step-arrow{color:#7a7468;font-size:14px;transition:transform 0.3s}
+.step.active .step-arrow{transform:rotate(90deg);color:#c9956b}
+.step-body{padding:0 18px 18px;animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.mock-chat{background:#14120f;border:1px solid #2a2722;border-radius:10px;padding:14px;margin:10px 0}
+.mock-user{background:rgba(96,165,250,0.1);border:1px solid rgba(96,165,250,0.2);border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:12px;color:#60a5fa}
+.mock-ai{font-size:12px;color:#b0a89a;line-height:1.7}
+.mock-ai b{color:#e8e2d8}
+.data-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11px}
+.data-table th{text-align:left;padding:6px 10px;background:#2a2722;color:#c9956b;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:0.05em}
+.data-table td{padding:6px 10px;border-bottom:1px solid #2a2722;color:#e8e2d8}
+.data-table tr:nth-child(even) td{background:rgba(42,39,34,0.3)}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px;margin:10px 0}
+.metric{background:#14120f;border:1px solid #2a2722;border-radius:8px;padding:10px;text-align:center}
+.metric .val{font-size:20px;font-weight:700;color:#c9956b}
+.metric .lbl{font-size:8px;color:#7a7468;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px}
+.score-bar{display:flex;gap:2px;margin:10px 0}
+.score-seg{height:8px;border-radius:4px;flex:1}
+.signal{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid #2a2722;font-size:12px;color:#b0a89a}
+.signal:last-child{border:none}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.dot-g{background:#4ade80}
+.dot-y{background:#fbbf24}
+.msg-card{background:#14120f;border:1px solid #2a2722;border-radius:8px;padding:10px 12px;margin:6px 0}
+.msg-date{font-size:10px;color:#c9956b;font-weight:700}
+.msg-text{font-size:11px;color:#b0a89a;font-style:italic;margin-top:3px;line-height:1.5}
+.tip{background:#2d2820;border-left:3px solid #c9956b;border-radius:0 8px 8px 0;padding:10px 14px;margin:6px 0;font-size:11px;color:#b0a89a;line-height:1.6}
+.pdf-pages{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.pdf-page{width:70px;height:90px;background:#1e1c19;border:1px solid #2a2722;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:8px;color:#7a7468}
+.pdf-page .icon{font-size:18px;margin-bottom:4px}
+.sizing-box{background:rgba(201,149,107,0.1);border:1px solid rgba(201,149,107,0.2);border-radius:8px;padding:12px;margin:10px 0;text-align:center}
+.sizing-box .big{font-size:28px;font-weight:700;color:#c9956b}
+.sizing-box .desc{font-size:11px;color:#7a7468;margin-top:4px}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent,#0f0d0a 30%);padding:30px 24px 24px;z-index:50}
+.nav-inner{max-width:720px;margin:0 auto;display:flex;gap:10px}
+.nav-btn{flex:1;padding:12px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:center}
+.btn-prev{background:#1a1816;border:1px solid #2a2722;color:#7a7468}
+.btn-next{background:linear-gradient(135deg,#c9956b,#a07040);border:none;color:#14120f}
+.footer{text-align:center;padding:24px;font-size:11px;color:#3a3630;margin-bottom:80px}
+.footer a{color:#c9956b;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="header"><div class="header-inner">
+<div class="brand"><div class="brand-icon">RP</div><div><h1>Sistema de Inteligencia Relacional</h1><span>ByB Casa de Cambio</span></div></div>
+<div class="badge">DEMO EN VIVO</div>
+</div></div>
+<div class="content">
+<div class="intro"><h2>Como funciona el Sistema RP</h2><p>Recorre los 7 pasos del proceso completo: desde que un promotor<br>registra un contacto hasta el PDF de inteligencia relacional.</p></div>
+<div id="steps"></div>
+<div class="footer">ByB Casa de Cambio &mdash; Sistema RP &mdash; 2026<br><a href="https://bybcambio.github.io">Cuestionario</a> &middot; <a href="https://bybcambio.github.io/tablero">Tablero Kanban</a></div>
+</div>
+<div class="nav-bar"><div class="nav-inner">
+<button class="nav-btn btn-prev" id="prevBtn" onclick="prev()">Anterior</button>
+<button class="nav-btn btn-next" id="nextBtn" onclick="next()">Siguiente</button>
+</div></div>
+<script>
+var cur=0;
+var S=[
+{t:'El promotor registra un contacto',s:'Cuestionario digital: bybcambio.github.io (5 minutos)',b:'<p style="font-size:12px;color:#7a7468;margin-bottom:10px">Carlos Ramirez acaba de conocer a un empresario en una comida. Abre el cuestionario en su celular y llena 7 pasos:</p><table class="data-table"><tr><th>Campo</th><th>Dato capturado</th></tr><tr><td>Nombre</td><td>RICARDO VALENCIA MONTOYA</td></tr><tr><td>Apodo</td><td>Ricky</td></tr><tr><td>Empresa</td><td>Valencia Importaciones</td></tr><tr><td>Cargo</td><td>Director General</td></tr><tr><td>Industria</td><td>Comercio exterior (electronica)</td></tr><tr><td>Oportunidad ByB</td><td>Importa/Exporta, Paga USD, Ops corporativas</td></tr><tr><td>Banco actual</td><td>Banorte</td></tr><tr><td>Volumen est.</td><td>$50K - $200K USD/mes</td></tr><tr><td>Intereses</td><td>Padel, vinos, F1</td></tr><tr><td>Instagram</td><td>@ricky.valencia</td></tr><tr><td>Detalles</td><td>Directo, puntual. Le gusta el Ribera del Duero. No hablar de politica.</td></tr><tr><td>Promesa</td><td>Enviarle comparativa tipo cambio ByB vs Banorte</td></tr><tr><td>Promotor</td><td>Carlos Ramirez</td></tr></table><p style="font-size:11px;color:#7a7468;margin-top:8px">El cuestionario genera un Excel con <b style="color:#c9956b">37 columnas</b> y lo descarga automaticamente. Carlos se lo manda a Dimitri por WhatsApp.</p>'},
+
+{t:'Dimitri sube el Excel a Sistema RP',s:'Proyecto Claude con Opus 4.6 + 7 archivos de conocimiento',b:'<div class="mock-chat"><div class="mock-user">Nuevo contacto de Carlos Ramirez.<br>[Excel adjunto: RP_RICARDO_VALENCIA_2026-03-19.xlsx]</div><div class="mock-ai"><b>Procesando Excel...</b><br><br>Promotor: <b>Carlos Ramirez</b><br>Contacto: <b>RICARDO VALENCIA MONTOYA (Ricky)</b><br>Valencia Importaciones &mdash; Dir. General &mdash; Comercio exterior<br><br>Oportunidades ByB detectadas: Importa/Exporta, Paga USD, Ops corporativas<br>Banco actual: <b>Banorte</b> | Volumen: <b>$50K-$200K USD/mes</b><br><br>ID asignado: <b>C001</b><br>Proximo contacto sugerido: <b>9 abril 2026</b> (cadencia B = 49 dias)<br>Follow-up promesa: <b>22 marzo 2026</b> (3 dias habiles)<br><br>Perfil detectado: <b>Dominante</b> &mdash; directo, puntual, no le gustan rodeos<br><br><b>Generando reporte PDF con analisis completo...</b></div></div>'},
+
+{t:'Score Relacional: 67.5 / 100',s:'Formula de 5 componentes con pesos diferenciados',b:'<div class="metrics"><div class="metric"><div class="val">67.5</div><div class="lbl">Score total</div></div><div class="metric"><div class="val">14</div><div class="lbl">Frecuencia (20)</div></div><div class="metric"><div class="val">17.5</div><div class="lbl">Cumplimiento (25)</div></div><div class="metric"><div class="val">9</div><div class="lbl">Etapa (30)</div></div><div class="metric"><div class="val">15</div><div class="lbl">Oportunidad (15)</div></div><div class="metric"><div class="val">6</div><div class="lbl">Afinidad (10)</div></div></div><div class="score-bar"><div class="score-seg" style="background:#f87171"></div><div class="score-seg" style="background:#fb923c"></div><div class="score-seg" style="background:#fbbf24"></div><div class="score-seg" style="background:#4ade80;border:2px solid #e8e2d8"></div><div class="score-seg" style="background:#c9956b"></div></div><p style="font-size:12px;text-align:center;color:#7a7468;margin:6px 0">0-19 Frio &nbsp; 20-39 Inicial &nbsp; 40-59 Construccion &nbsp; <b style="color:#4ade80">60-79 Casi listo</b> &nbsp; 80-100 Listo</p><p style="font-size:12px;color:#b0a89a;margin-top:10px"><b style="color:#c9956b">Escalon de conversion: 4 de 7</b> &mdash; "Confia en ti". Ya compartio info profesional. La accion que lo mueve al escalon 5 es demostrar valor sin pedir nada: cumplir la promesa de la comparativa.</p>'},
+
+{t:'Senales de compra + Sizing financiero',s:'Semaforo verde/amarillo/rojo + calculo en USD',b:'<div class="signal"><div class="dot dot-g"></div><div><b style="color:#4ade80">VERDE:</b> Insatisfecho con Banorte &mdash; menciono que el servicio es lento y no le dan tipo diferenciado</div></div><div class="signal"><div class="dot dot-g"></div><div><b style="color:#4ade80">VERDE:</b> Compartio datos de operaciones &mdash; volumen $50K-$200K/mes, 3-4 operaciones mensuales a Shenzhen</div></div><div class="signal"><div class="dot dot-y"></div><div><b style="color:#fbbf24">AMARILLA:</b> No pidio solucion directamente &mdash; aun esta en modo "me quejo pero no cambio"</div></div><div class="sizing-box"><div class="big">$210,000 USD/ano</div><div class="desc">Ahorro estimado si opera con ByB vs Banorte<br>42 operaciones/ano x $100K promedio x 0.5% diferencia en spread</div></div><p style="font-size:12px;color:#b0a89a;margin-top:8px"><b>Mapa de decision:</b> Ricky es el decisor directo. No hay bloqueador. Falta conocer a su contador (posible influenciador).</p><p style="font-size:12px;color:#b0a89a;margin-top:4px"><b>Ventana de oportunidad:</b> AHORA &mdash; proximas 2 semanas, antes de que Banorte lo retenga.</p>'},
+
+{t:'Secuencia de 5 mensajes WhatsApp',s:'Con fechas exactas y texto personalizado para copiar',b:'<div class="msg-card"><div class="msg-date">Paso 1 &mdash; 19 mar (manana)</div><div class="msg-text">"Ricky, fue un gusto la comida de hoy. Me quede pensando en lo que platicaste del padel. Yo tambien juego. Un dia de estos armamos una."</div></div><div class="msg-card"><div class="msg-date">Paso 2 &mdash; 22 mar (sabado) &mdash; PROMESA</div><div class="msg-text">"Ricky, aqui te mando la comparativa que te prometi. Son numeros reales con tu volumen. Cualquier duda, con confianza."</div></div><div class="msg-card"><div class="msg-date">Paso 3 &mdash; 4 abr</div><div class="msg-text">"Ricky, vi este articulo sobre regulacion de importaciones en electronica. Me acorde de ti. Te lo comparto por si te sirve."</div></div><div class="msg-card"><div class="msg-date">Paso 4 &mdash; 18 abr</div><div class="msg-text">"Ricky, organizo una comida el viernes con un grupo de empresarios de comercio exterior. Gente interesante. Te late?"</div></div><div class="msg-card"><div class="msg-date">Paso 5 &mdash; 2 may</div><div class="msg-text">"Ricky, como van las importaciones? Vi que el dolar bajo esta semana. Si tienes pagos proximos podria ser buen momento."</div></div><p style="font-size:11px;color:#7a7468;margin-top:8px;text-align:center">Cada mensaje tiene boton de WhatsApp directo en el tablero del promotor</p>'},
+
+{t:'Plan de Accion: Tips de mentor experto',s:'5-7 consejos practicos sin mencionar teoria (basados en psicologia aplicada)',b:'<div class="tip">Ricky es puntual y directo &mdash; no le gustan los rodeos. Si le dijiste que le mandabas la comparativa el sabado, tiene que ser el sabado antes de mediodia. Con alguien asi, un dia de retraso puede costarte meses de trabajo.</div><div class="tip">Cuando le mandes los numeros, no le pongas solo el tipo de ByB. Ponle primero lo que paga hoy con Banorte, luego lo de ByB, y al final la diferencia anualizada. El numero que se le va a quedar grabado son los $210K que esta dejando en la mesa cada ano. Ese es el numero que no lo va a dejar dormir.</div><div class="tip">No le ofrezcas ByB todavia. Primero cumple la promesa, luego mandale el articulo de importaciones. Cuando ya tenga 2 favores tuyos sin que hayas pedido nada, la resistencia va a ser minima. El momento de ofrecer es cuando el pregunte.</div><div class="tip">Invitalo a la comida donde va a estar alguien que ya opera con ByB. Cuando Ricky vea que otros empresarios de su nivel confian en ti, no vas a necesitar convencerlo de nada. La decision se toma sola.</div><div class="tip">Le gusta el Ribera del Duero. Si la relacion avanza bien, una botella con nota escrita a mano en un momento inesperado va a tener mas impacto que cualquier descuento. La nota: "Ricky, vi esta y me acorde de lo que platicaste. Espero la disfrutes. Abrazo, Carlos."</div>'},
+
+{t:'PDF de 5 paginas descargable',s:'RP_RICARDO_VALENCIA_2026-03-19_Reporte.pdf',b:'<div class="pdf-pages"><div class="pdf-page"><div class="icon">&#128203;</div>Portada<br><b>Score 67.5</b></div><div class="pdf-page"><div class="icon">&#128100;</div>Pag 1<br>Ficha<br><b>37 campos</b></div><div class="pdf-page"><div class="icon">&#128172;</div>Pag 2<br>Interaccion<br><b>Promesas</b></div><div class="pdf-page"><div class="icon">&#128200;</div>Pag 3<br>Inteligencia<br><b>$210K USD</b></div><div class="pdf-page"><div class="icon">&#127919;</div>Pag 4<br>Plan accion<br><b>5 msgs + tips</b></div><div class="pdf-page"><div class="icon">&#128197;</div>Pag 5<br>Calendario<br><b>Recordatorios</b></div></div><p style="font-size:13px;color:#b0a89a;margin:12px 0;line-height:1.6">Todo esto se genera en <b style="color:#c9956b">~2 minutos</b> a partir de un Excel de 37 columnas.<br>Manualmente, este nivel de analisis tomaria <b style="color:#c9956b">2-3 horas</b> por contacto.</p><p style="font-size:13px;color:#b0a89a;line-height:1.6">Despues, Dimitri actualiza el tablero en <a href="https://bybcambio.github.io/tablero" style="color:#c9956b">bybcambio.github.io/tablero</a> y Carlos ve a Ricky en su Kanban con la secuencia de mensajes, tips de como tratarlo, y el boton de WhatsApp directo.</p><div style="background:#2d2820;border:1px solid #3a3630;border-radius:10px;padding:14px;margin-top:14px;text-align:center"><p style="color:#c9956b;font-weight:700;font-size:14px;margin-bottom:6px">El sistema incluye ademas:</p><p style="font-size:11px;color:#b0a89a;line-height:1.8">10 tecnicas de influencia etica &middot; 4 perfiles de personalidad<br>6 guiones de llamada telefonica &middot; Regalos estrategicos por perfil<br>Retencion post-venta (30 dias) &middot; 5 protocolos de crisis relacional<br>Reactivacion de contactos frios &middot; Conexiones cruzadas entre contactos<br>Briefing semanal ejecutivo de 6 paginas &middot; Psicologia del dinero aplicada</p></div>'}
+];
+
+function render(){
+  var h='';
+  S.forEach(function(s,i){
+    var active=i===cur;
+    h+='<div class="step '+(active?'active':'collapsed')+'">';
+    h+='<div class="step-header" onclick="go('+i+')">';
+    h+='<div class="step-num">'+(i+1)+'</div>';
+    h+='<div class="step-info"><div class="step-title">'+s.t+'</div><div class="step-sub">'+s.s+'</div></div>';
+    h+='<div class="step-arrow">'+(active?'&#9660;':'&#9654;')+'</div>';
+    h+='</div>';
+    if(active)h+='<div class="step-body">'+s.b+'</div>';
+    h+='</div>';
+  });
+  document.getElementById('steps').innerHTML=h;
+  document.getElementById('prevBtn').style.opacity=cur===0?'0.3':'1';
+  document.getElementById('nextBtn').textContent=cur===S.length-1?'Volver al inicio':'Siguiente';
+}
+function go(n){cur=n;render();document.querySelector('.step.active').scrollIntoView({behavior:'smooth',block:'start'})}
+function next(){cur=cur>=S.length-1?0:cur+1;render();document.querySelector('.step.active').scrollIntoView({behavior:'smooth',block:'start'})}
+function prev(){if(cur>0){cur--;render();document.querySelector('.step.active').scrollIntoView({behavior:'smooth',block:'start'})}}
+render();
+</script>
+</body></html>
